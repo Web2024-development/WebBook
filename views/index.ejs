@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <link rel="stylesheet" href="stylesheets/base.css">
+      <link rel="stylesheet" href="stylesheets/main.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+      <title>Readsphera</title>
+    <style>
+
+  
+    </style>
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+        <div class="grid">
+            <nav class="header__navbar header__navbar--seperate">
+                <!-- <div class="header__logo">
+                    <img class="header__logo-img" src="images/Readsphera (1).png" alt="">
+                    Read
+                </div> -->
+                <ul class="header__navbar-list">
+                    <li class="header__navbar-item header__navbar-item--left">
+                        <i class="fa-solid fa-globe"></i>
+                        <span><a href="/" style="text-decoration: none; color: var(--text-main-color)">Browse</a></span>
+                    </li>
+                    <li class="header__navbar-item">
+                        <i class="fa-solid fa-trophy"></i>
+                        Rankings
+                    </li>
+                    <li class="header__navbar-item">
+                        <i class="fa-regular fa-pen-to-square"></i>
+                        Creates
+                    </li>
+                    <li class="header__navbar-item">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                        Shop
+                    </li>
+                </ul>
+
+                <ul class="header__navbar-list">
+                    <li class="header__navbar-item"><span class="header__navbar-item--search-circle"><i class="fa-solid fa-magnifying-glass"></i></span></li>
+                    <li class="header__navbar-item"><a href="library" style="text-decoration: none; color: var(--text-main-color)">Library</a></li>
+                    <li class="header__navbar-item"><i class="fa-solid fa-gear"></i></li>
+                    <li class="header__navbar-item"><span class="header__navbar-item--login-circle"><a href="signup">Sign Up</a></span></li>
+                    <li class="header__navbar-item"><span class="header__navbar-item--login-circle"><a href="login">Log In</a></span></li>
+                </ul>
+
+            </nav>
+            <!-- <div class="header__2"></div> -->
+             <div class="header-with-search">
+                  <div class="header__logo">
+                      <img src="" alt="" class=".header__logo-img">
+                  </div>
+
+                  <div class="header__search">
+
+                  </div>
+
+                  <div class="header__cart">
+                      <i class="fa-solid fa-cart-shopping header__cart-icon"></i>
+
+                  </div>
+             </div>
+
+        </div>
+    </header>
+
+
+    <div class="container">
+        <div class="ranking-container">
+            <h1>Ranking</h1>
+            <div class="ranking-categories">
+                <!-- Category: Novel -->
+                <div class="category">
+                    <h2>Novel</h2>
+                    <div class="ranking-list">
+                        
+                        
+                            <% types.forEach(function(img, i) { %>
+    
+                                <div class="ranking-item active">
+                                    <div class="rank"><%= i + 1 %></div>
+                                    <div class="image"><img src="<%= img.image %>" alt="" class="image"></div>
+                                    <div class="info">
+                                      <p><a href="<%= img._id %>"  style="text-decoration: none; font-size: 16px; color: var(--text-main-color)"><%= img.name %></a></p>
+                                        <span class="genre"><%= img.type %></span>
+                                        <span class="rating">⭐ 4.9</span>
+                                        <h3><%= img.description %></h3>
+                                    </div>
+                                </div>
+                            <% }) %>
+                        
+                    </div>
+                </div>
+                <!-- Category: Podcast -->
+                <div class="category">
+                    <h2>Podcast</h2>
+                    <div class="ranking-list">
+                        <% if (typeFantasy.length > 0) { %>
+                            <% typeFantasy.forEach(function(img, i) { %>
+    
+                                <div class="ranking-item">
+                                    <div class="rank"><%= i + 1 %></div>
+                                    <div class="image"><img src="<%= img.image %>" alt="" class="image"></div>
+                                    <div class="info">
+                                        <p><a href="<%= img._id %>" style="text-decoration: none; font-size: 16px; color: var(--text-main-color)"><%= img.name %></a></p>
+                                        <span class="genre"><%= img.type %></span>
+                                        <span class="rating">⭐ 4.9</span>
+                                        <h3><%= img.description %></h3>
+                                        
+                                    </div>
+                                </div>
+                           <% }) %>
+                        <% } %>
+                    </div>
+                </div>
+                <!-- Category: Fanfic -->
+                <div class="category">
+                    <h2>Fanfic</h2>
+                    <div class="ranking-list">
+                        <% books.forEach(function(type, i) { %>
+                            <div class="ranking-item">
+                                <div class="rank"><%= i + 1 %></div>
+                                <div class="image"><img src="<%= type.image %>" alt="" class="image"></div>
+                                <div class="info">
+                                    <p><a href="<%= type._id %>"  style="text-decoration: none; font-size: 16px; color: var(--text-main-color)"><%= type.name %></a></p>
+                                    <span class="genre"><%= type.type %></span>
+                                    <span class="rating">⭐ 4.9</span>
+                                    <h3><%= type.description %></h3>
+                                </div>
+                            </div>
+
+                        <% }) %>
+                   
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+
+    </footer>
+
+
+
+
+
+
+<script>
+    const items = document.querySelectorAll('.ranking-item');
+
+    items.forEach(item => {
+        item.addEventListener('mousedown', function () {
+            this.classList.add('active');
+        });
+
+        item.addEventListener('mouseup', function () {
+            this.classList.remove('active');
+        });
+
+        item.addEventListener('mouseleave', function () {
+            this.classList.remove('active');
+        });
+    });
+
+</script>
+
+
+
+
+    
+
+    <!-- <h1>Book List</h1>
+  <ul>
+    <% books.forEach((book, type) => { %>
+      <li>
+        <a href="/<%= book._id %>">
+          <%= book.name %> 
+        </a>
+        <p><%= book.description %></p>
+        <p><%= book.type %></p>
+      </li>
+    <% }) %>
+  </ul> -->
+
+
+
+</body>
+</html>

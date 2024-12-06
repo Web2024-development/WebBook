@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>HOME</h1>
+    <!-- <form action="/download"><button type="submit" id="btn">Download</button></form> -->
+    <a href="filePDF/books.pdf" download>
+        <button>Download PDF</button>
+      </a>
+     <input type="text" id="search-box" onkeyup="sendData(this)" name="searchs">
+     <section id="searchResult"></section>
+     <script>
+        function sendData(e) {
+            var search = ''
+            const searchResult = document.getElementById("searchResult");
+            let match = e.value.match(/^[a-zA-Z ]*/);
+            let match2 = e.value.match(/\s*/)
+            if (match2[0] === e.value) {
+                searchResult.innerHTML = ''
+                return;
+            }
+
+            if (match[0] === e.value) {
+                
+
+                fetch('home', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({playload: e.value})
+                }).then(res => res.json()).then(data => {
+                    let playload = data.playload;
+                    searchResult.innerHTML = ''
+                    if (playload.length < 1) {
+                        searchResult.innerHTML = '<p> Sorry, Nothing found</p>'
+                        return;
+                    }
+                    playload.forEach((item, index) => {
+                        if (index > 0) searchResult.innerHTML += '<br>'
+                        // searchResult.innerHTML += `<p> ${item.name} </p>`
+                        searchResult.innerHTML += `<a href = "details">${item.name}</a>`
+                        searchResult.innerHTML += `<img src= '${item.image}'/>`
+                    })
+                })
+                
+                return
+            };
+            searchResult.innerHTML = ''
+        }
+
+     </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+:root {
+    --white-color: #fff;
+    --black-color: #000;
+    --main-color: #5275f1;
+    --text-main-color: #0b0066;
+    --text-color: #333;
+    --header-height: 120px;
+    --navbar-height: 60px;
+    --header-with-search-height: calc(var(--header-height) - var(--navbar-height))
+
+}
+
+* {
+    box-sizing: inherit;   
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    font-size: 62.5%;
+    line-height: 1.6rem;
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    padding: 0;
+}
+
+/* =================================================================Responsive================================================================ */
+.grid {
+    width: 1300px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.grid__full-width {
+    width: 100%;
+}
+
+.grid__row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
