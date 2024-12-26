@@ -1,0 +1,520 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #a0a0a0; /* Nền xám nhạt */
+    height: 100vh; /* Chiều cao toàn màn hình */
+    display: flex;
+    justify-content: center;
+  
+}
+
+.container {
+    display: flex; /* Sử dụng Flexbox */
+    flex-wrap: wrap;
+    width: 100%; /* Chiều rộng toàn màn hình */
+    height: 100vh; /* Chiều cao tổng background */
+    /*background-color:*/
+    /*justify-content: space-between; */
+    gap: 5%; /* Thêm khoảng cách giữa left-section và right-section */
+    align-items: flex-start; 
+    position: relative;
+    padding: 1%; 
+}
+
+.left-section {
+    flex: 0 0 20%;
+    top: 2%; /* Cách trên 2% */
+    left: 1%; /* Cách trái 1% */
+    width: 20%; /* Chiếm 18% chiều rộng */
+    height: 45%; /* Chiều cao cố định */
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    box-sizing: border-box;
+
+
+}
+
+ .right-section {
+    position: absolute;
+    top: 2%; /* Cách trên 2% */
+    right: 1%; /* Cách phải 1% */
+    left: calc(1% + 18% + 2%); /* Đặt bên phải của left-section */
+    height: 96%; /* Chiếm toàn bộ chiều cao trừ padding trên dưới */
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    box-sizing: border-box;
+
+ }
+/* Responsive Left Section */
+ /* Cấu hình cho left-section và right-section trên màn hình nhỏ */
+@media (max-width: 768px) {
+    .left-section {
+        width: 48%; /* Chiếm 48% chiều rộng (bằng với right-section) */
+        height: auto; /* Chiều cao tự động */
+        top: 3%; /* Khoảng cách từ trên */
+        left: 0; /* Căn trái */
+        padding: 15px; /* Giữ nguyên padding */
+        display: flex; /* Sử dụng flex để dàn các phần tử theo hàng ngang */
+        justify-content: space-between; /* Canh đều các phần tử trong left-section */
+        align-items: center; /* Căn giữa các phần tử theo chiều dọc */
+    }
+
+    .right-section {
+        width: 48%; /* Chiếm 48% chiều rộng (bằng với left-section) */
+        top: 3%; /* Giữ nguyên khoảng cách từ trên */
+        left: 50%; /* Đặt ở bên phải của left-section */
+        padding: 15px; /* Giữ nguyên padding */
+        display: block; /* Hoặc flex nếu cần căn chỉnh */
+    }
+
+    .custom-btn {
+        width: auto; /* Để nút không bị kéo dài hết */
+        padding: 8px 12px;
+        font-size: 12px; /* Giảm kích thước chữ */
+    }
+}
+
+/* Cấu hình cho left-section và right-section trên màn hình lớn */
+@media (min-width: 1024px) {
+    .left-section {
+        width: 25%; /* Chiếm 25% chiều rộng */
+        height: auto; /* Chiều cao tự động tùy theo nội dung */
+        display: block; /* Trở lại kiểu block cho left-section */
+    }
+
+    .right-section {
+        width: 75%; /* Chiếm phần còn lại */
+        left: 25%; /* Đặt right-section sau left-section */
+        display: block; /* Trở lại kiểu block cho right-section */
+    }
+
+    .custom-btn {
+        width: 100%; /* Nút kéo dài theo chiều rộng của left-section */
+        padding: 12px 18px; /* Điều chỉnh padding */
+        font-size: 16px; /* Tăng kích thước chữ */
+    }
+}
+
+
+/* Cấu hình cho left-section trên màn hình lớn */
+@media (min-width: 1024px) {
+    .left-section {
+        width: 25%; /* Chiếm 25% chiều rộng trên màn hình lớn */
+        height: auto; /* Chiều cao tự động tùy theo nội dung */
+    }
+
+    .right-section {
+        width: 70%; /* Right section chiếm 70% chiều rộng */
+        left: 26%; /* Căn phải của right-section sau left-section */
+    }
+
+    .custom-btn {
+        width: 100%; /* Nút kéo dài theo chiều rộng của left-section */
+        padding: 12px 18px; /* Điều chỉnh padding */
+        font-size: 16px; /* Tăng kích thước chữ */
+    }
+}
+
+
+/* Thong tin nguoi dung o left-sectionsection */
+.custom-btn {
+    width: 100%; /* Chiếm 100% chiều rộng container */
+    max-width: 300px; /* Chiều rộng tối đa trên desktop */
+    padding: 10px 15px;
+    font-size: 14px;
+    color: #333; /* Màu chữ mặc định */
+    background-color: #f9f9f9; /* Màu nền mặc định */
+    border: 1px solid #ddd; /* Viền xám */
+    border-radius: 5px; /* Góc bo tròn */
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hiệu ứng hover */
+.custom-btn:hover {
+    background-color: #0b0066; /* Nền xanh đậm */
+    color: #fff; /* Chữ trắng */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Đổ bóng */
+}
+
+/* Căn chỉnh các thành phần bên trong nút */
+.custom-btn .btn-icon {
+    font-size: 16px; /* Kích thước icon */
+    color: #0b0066; /* Màu icon */
+}
+
+.custom-btn .btn-text {
+    font-size: 14px; /* Kích thước chữ */
+    color: inherit; /* Kế thừa màu chữ */
+}
+
+.custom-btn .btn-arrow {
+    font-size: 16px; /* Kích thước mũi tên */
+    color: #0b0066; /* Kế thừa màu chữ */
+}
+
+.user-name {
+    color: #0b0066; /* Màu chữ tên người dùng */
+}
+
+/* Responsive cho button ( màn hình nhỏ ) */
+@media (max-width: 768px) {
+    .custom-btn {
+        max-width: 100%; /* Không giới hạn chiều rộng */
+    }
+
+    .custom-btn .btn-arrow {
+        display: none; /* Ẩn mũi tên */
+    }
+}
+
+
+
+/* Right section */
+.right-section {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    box-sizing: border-box;
+    min-height: 100%; /* Đảm bảo phần tử chiếm ít nhất chiều cao toàn màn hình */
+    height: auto; /* Đảm bảo chiều cao tự động điều chỉnh để bao phủ các phần tử bên trong */
+
+}
+
+/* Container cho tiến trình 
+.progress-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%; 
+    max-width: 600px; 
+    margin-top: 20px;
+    position: relative;
+}
+
+
+.progress-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.step-circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #ccc; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 5px; 
+    border: 1.5px solid #0b0066; 
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.step-label {
+    font-size: 14px;
+    color: #333;
+}
+
+.progress-step.active .step-circle {
+    background-color: #4353a3; 
+    transform: scale(1.1); 
+} 
+*/
+
+/* Responsive for progress step 
+@media (max-width: 768px) {
+    .progress-container {
+        flex-wrap: wrap; 
+        gap: 15px; 
+    }
+
+    .progress-step {
+        width: 100px; 
+    }
+}
+*/
+
+/* Container cho upload-section và input-section */
+.content-container {
+    display: flex;
+    flex-direction: row; /* Sắp xếp ngang */
+    align-items: flex-start; /* Căn hai phần từ trên cùng */
+    justify-content: space-between; /* Đẩy hai phần sang hai bên */
+    width: 100%; /* Đảm bảo chiếm toàn bộ chiều rộng */
+    gap: 20px; /* Khoảng cách giữa các phần */
+    margin-top: 20px; /* Khoảng cách với phần trên */
+}
+
+
+/* Phần upload ảnh trong right-section */
+.upload-section {
+    flex: 1;
+    justify-content: flex-start;
+    display: flex;
+    flex-direction: column; 
+    margin-top: 30px;
+     /* Không vượt quá chiều rộng của right-section */
+    box-sizing: border-box; /* Đảm bảo padding không ảnh hưởng đến kích thước */
+}
+
+/* Khung ảnh nhỏ hơn */
+/* Phần upload ảnh trong right-section */ 
+.upload-section {
+    flex: 1;
+    justify-content: flex-start;
+    display: flex;
+    flex-direction: column; 
+    margin-top: 30px;
+    margin-right: 20px; /* Giữ khoảng cách giữa upload và input-section */
+    box-sizing: border-box; /* Đảm bảo padding không ảnh hưởng đến kích thước */
+}
+
+/* Khung ảnh to hơn và căn xích vào bên trong */
+.image-container {
+    width: 200px; /* Tăng kích thước ảnh */
+    height: 250px; /* Tăng chiều cao */
+    border: 2px solid #ccc;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    position: relative;
+    box-sizing: border-box;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-right: 20px; /* Giữ khoảng cách với input-section */
+    border-radius: 7px;
+}
+
+/* Đảm bảo ảnh vẫn phủ đầy khung */
+.image-preview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Đảm bảo ảnh luôn vừa khung */
+    border-radius: 5px;
+}
+
+
+.image-container {
+    position: relative;
+    width: 300px; /* Đặt kích thước cho ảnh */
+    height: 300px;
+    border: 1px solid #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  #preview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  #image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0; /* Ẩn input file nhưng vẫn hoạt động */
+    cursor: pointer;
+  }
+
+  .image-container::after {
+    content: 'Choose File';
+    position: absolute;
+    bottom: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 5px 10px;
+    font-size: 14px;
+    border-radius: 5px;
+  }
+
+
+/* Nút Add */
+.custom-add-btn {
+    background-color: transparent; /* Nền trong suốt */
+    color: #0b0066; /* Màu chữ */
+    padding: 5px 10px;
+    border: 2px solid #0b0066; /* Viền */
+    border-radius: 100px; /* Bo tròn nút */
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+    width: 200px;
+    margin: 5px; /* Khoảng cách trên */
+
+}
+
+.custom-add-btn:hover {
+    background-color: #0b0066; /* Nền xanh khi hover */
+    color: white; /* Chữ trắng khi hover */
+    transform: translateY(-3px); /* Hiệu ứng nổi lên */
+}
+
+
+
+/* Phần nhập thông tin trong right-section phần nhập thông tin */
+.input-section {
+    flex: 2;
+    display: flex; 
+    flex-direction: column;
+    align-items: flex-end; 
+    width: 100%; /* Chiếm toàn bộ chiều rộng của right-section */
+}
+
+/* Nhóm các trường nhập (Title, Author, Status, Category, Age Limit,..) */
+.input-group {
+    margin-bottom: 15px; /* Khoảng cách giữa các trường nhập */
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.input-group input,
+.input-group select,
+.input-group button {
+    border-radius: 50px !important; /* Bo tròn cho tất cả các khung nhập liệu và nút */
+}
+
+
+/* Tiêu đề cho các trường nhập */
+.input-group label {
+    font-size: 16px;
+    color: #0b0066; /* Màu chữ */
+    margin-bottom: 5px;
+}
+
+/* Khung nhập liệu */
+.input-field {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 2px solid #ccc; /* Viền khung nhập */
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease;
+}
+
+/* Khi người dùng focus vào trường nhập */
+.input-field:focus {
+    border-color: #0b0066; /* Viền đổi màu khi focus */
+    outline: none;
+}
+
+/* Nhóm nhập với icon cây bút */
+.input-with-icon {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+/* Icon cây bút */
+.icon {
+    font-size: 17px;
+    color: #0b0066;
+    position: absolute;
+    right: 10px; /* Đặt icon ở bên phải */
+}
+
+/* Khung select (cho các lựa chọn như Status, Category, Age Limit) */
+select.input-field {
+    appearance: none; /* Tắt style mặc định của select */
+    background-color: #f9f9f9;
+    border-color: #ccc;
+    padding: 10px;
+    font-size: 14px;
+    width: 100%;
+    transition: border-color 0.3s ease;
+}
+
+/* Khi người dùng focus vào select */
+select.input-field:focus {
+    border-color: #0b0066; 
+    outline: none; 
+}
+
+
+/* ButtonButton trong input-section */
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    gap: 5px; /* Khoảng cách giữa các nút */
+    flex-wrap: wrap;
+
+}
+
+.button-group button {
+    flex: 1; /* Đảm bảo các nút có độ dài bằng nhau */
+    padding: 10px;
+    font-size: 14px;
+    background-color: transparent;
+    border: 2px solid #0b0066;
+    color: #0b0066;
+    border-radius: 50px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    min-width: 160px;
+    width: calc(50% - 3px); /* Mỗi nút chiếm 1/2 chiều rộng */
+}
+
+
+/* Đảm bảo các nút không bị ảnh hưởng bởi khoảng cách và vẫn duy trì độ dài bằng nhau */
+.button-group button:last-child {
+    margin-right: 0; /* Đảm bảo nút cuối không có khoảng cách */
+}
+
+/* Khi hover vào các nút */
+.button-group button:hover {
+    background-color: #0b0066;
+    color: white;
+    transform: translateY(-3px);
+}
+
+/* Responsive cho button Cancel, NextNext */
+/* Khi mh < 768px) */
+@media (max-width: 768px) {
+    .button-group {
+        display: flex;
+        flex-direction: column; 
+        gap: 5px; /* Khoảng cách giữa các nút */
+    }
+
+    .button-group button {
+        width: 100%; 
+        margin-bottom: 10px; /* Khoảng cách giữa các nút */
+    }
+}
+
+/* Khi mh > 768px */
+@media (min-width: 768px) {
+    .button-group {
+        display: flex;
+        flex-direction: row; 
+        gap: 10px; 
+    }
+
+    .button-group button {
+        width: calc(70% - 10px); 
+        min-width: 160px; /* Đảm bảo nút không quá nhỏ */
+    }
+}
+

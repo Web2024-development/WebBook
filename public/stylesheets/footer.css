@@ -1,0 +1,420 @@
+/* Vùng chứa carousel */
+.carousel-container {
+  background-color: #ffffff; /* Màu nền trắng */
+  padding: 20px; /* Khoảng cách nội dung bên trong */
+  border: 1px solid #ddd; /* Viền mờ nhẹ cho vùng carousel */
+  border-radius: 8px; /* Bo góc cho vùng carousel */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Hiệu ứng bóng nhẹ */
+  max-width: 100%; /* Độ rộng tối đa */
+  margin: 0 auto; /* Canh giữa trang */
+}
+
+/* Tiêu đề của carousel */
+.carousel-title {
+  color: #0b0066; /* Màu chữ xanh đậm */
+  font-size: 24px; /* Kích thước chữ */
+  font-weight: bold; /* Chữ đậm */
+  margin: 10px; /* Khoảng cách giữa tiêu đề và carousel */
+  margin-bottom: 3px;
+  text-align: left; /* Căn trái */
+  font-family: 'Cabinet Grotesk', sans-serif;
+}
+
+
+/* Căn chỉnh bố cục tổng thể */
+.book-carousel {
+  display: flex; /* Sắp xếp nút và bìa sách theo hàng ngang */
+  align-items: center; /* Canh giữa các phần tử theo chiều dọc */
+  gap: 40px; /* Khoảng cách giữa các phần tử */
+  position: relative;
+}
+
+
+/* Canh chỉnh bố cục của khu vực trưng bày sách */
+.book-display {
+  display: flex; /* Sắp xếp hình ảnh theo hàng ngang */
+  gap: 20px; /* Khoảng cách giữa các ảnh */
+  overflow-x: hidden; /* Cuộn ngang nếu nội dung quá dài */
+  scroll-behavior: smooth;
+  justify-content: center; /* Căn giữa các ảnh */
+  align-items: center;
+  padding: 10px;
+  
+}
+
+/* Chỉnh kích thước cho hình ảnh */
+.book-cover {
+  width: 120px; /* Chiều rộng 120px */
+  height: auto; /* Tự động điều chỉnh chiều cao theo tỷ lệ */
+  margin: 10px; /* Khoảng cách giữa các ảnh */
+  border-radius: 5px; /* Bo góc các ảnh */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Hiệu ứng bóng */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Hiệu ứng mượt mà khi hover */
+}
+
+/* Khi hover lên bìa sách */
+.book-cover:hover {
+  transform: scale(1.1); /*Phóng to bìa sách */
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.05); /* Thêm bóng cho bìa sách */
+  filter: brightness(0.5); /* Tăng độ sáng của ảnh */
+  transition: 0.2s ease;
+  border: 1px solid transparent;
+  cursor: pointer
+}
+
+/* Nút điều hướng */
+.nav-button {
+  width: 128px; /* Chiều rộng của nút */
+  height: 40px; /* Chiều cao của nút */
+  border: 1.5px solid #5c58ea; /* Viền màu xanh */
+  border-radius: 50%; /* Bo tròn nút */
+  background: transparent; /* Nền trong suốt */
+  cursor: pointer; /* Con trỏ thay đổi khi hover */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease, background-color 0.3s ease; /* Hiệu ứng hover */
+  position: relative;
+  margin: 20px;
+
+}
+
+/* Tạo mũi tên bằng ::before */
+.nav-button::before {
+  content: ''; /* Tạo nội dung mũi tên */
+  position: absolute;
+  width: 10px; /* Chiều rộng mũi tên */
+  height: 10px; /* Chiều cao mũi tên */
+  border-radius: 2px;
+  border-width: 2px 2px 0 0; /* Độ rộng viền (tạo đầu mũi tên) */
+  border-style: solid; /* Định dạng viền */
+  border-color: #2e2e2e;
+  transform: rotate(45deg); /* Xoay để thành mũi tên */
+}
+
+/* Mũi tên bên trái */
+.left-button::before {
+  transform: rotate(225deg); /* Xoay để mũi tên hướng sang trái */
+}
+
+/* Mũi tên bên phải */
+.right-button::before {
+  transform: rotate(45deg); /* Xoay để mũi tên hướng sang phải */
+}
+
+/* Hiệu ứng hover cho nút và mũi tên */
+.nav-button:hover {
+  background: #5275f1; /* Nền màu xanh */
+  transform: scale(1.1); /* Phóng to nhẹ */
+}
+
+.nav-button:hover::before {
+  border-color: #ffffff; /* Đổi màu mũi tên thành trắng khi hover */
+}
+
+/* Hiệu ứng hover cho nút */
+.nav-button:hover {
+  color:#ffffff;
+  background: #5275f1;
+  transform: scale(1.1); /* Phóng to nhẹ */
+}
+
+/* Vị trí nút trái */
+.left-button {
+  margin-right: -10px; /* Đẩy nút vào gần hơn khu vực bìa sách */
+}
+
+/* Vị trí nút phải */
+.right-button {
+  margin-left: -10px; /* Đẩy nút vào gần hơn khu vực bìa sách */
+}
+
+/* Phần tử chứa mỗi bìa sách */
+.book-item {
+  position: relative; /* Cần thiết để lớp overlay căn chỉnh đúng */
+  display: inline-block; 
+  width: fit-content; 
+}
+
+/* Lớp phủ hiển thị khi hover */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; /* Phủ kín theo kích thước của cha */
+  height: 100%; /* Phủ kín theo kích thước của cha */
+  /* background-color: rgba(0, 0, 0, 0.6); Màu đen trong suốt */
+  color: white; /* Màu chữ */
+  display: flex;
+  align-items: center; /* Canh giữa theo chiều dọc */
+  justify-content: center; /* Canh giữa theo chiều ngang */
+  font-size: 16px; /* Kích thước chữ */
+  font-weight: bold; /* Chữ đậm */
+  opacity: 0; /* Ban đầu ẩn */
+  transition: opacity 0.3s ease; /* Hiệu ứng mượt */
+  border-radius: 5px; /* Bo góc để khớp với ảnh */
+}
+  
+/* Hiển thị overlay khi hover */
+.book-item:hover .overlay {
+  opacity: 1;
+}
+
+/* Đảm bảo ảnh bìa vẫn giữ hiệu ứng cũ */
+.book-item:hover .book-cover {
+  transform: scale(1.1); /* Phóng to */
+  filter: brightness(0.5); /* Tăng độ sáng */
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.05); /* Hiệu ứng bóng */
+}
+
+/* Đảm bảo ảnh không bị ảnh hưởng bởi padding/margin bên ngoài */
+.book-cover {
+  display: block;
+  width: 100%; /* Đảm bảo ảnh luôn vừa với container */
+  height: auto; /* Giữ tỷ lệ ảnh */
+  border-radius: 5px; /* Bo góc như yêu cầu */
+  cursor: pointer
+}
+
+
+/* Đảm bảo responsive hiệu ứng overlay và hình ảnh */
+@media (max-width: 768px) {
+  .book-cover {
+    width: 150px; /* Tăng kích thước bìa sách trên màn hình nhỏ */
+  }
+
+  .overlay {
+    font-size: 14px; /* Giảm kích thước chữ để phù hợp */
+  }
+
+  .book-carousel {
+    gap: 20px; /* Thu hẹp khoảng cách giữa các phần tử */
+  }
+
+  .nav-button {
+    width: 30px;
+    height: 30px;
+    font-size: 16px; /* Giảm kích thước icon */
+  }
+}
+
+@media (max-width: 480px) {
+  .book-cover {
+    width: 100px; /* Kích thước nhỏ hơn cho bìa sách */
+    min-width: 80px;
+  }
+
+  .overlay {
+    font-size: 12px; /* Giảm kích thước chữ thêm nữa */
+  }
+
+  .book-carousel {
+    gap: 10px; /* Giảm khoảng cách hơn nữa */
+  }
+
+  .nav-button {
+    width: 25px;
+    height: 25px;
+    font-size: 14px; /* Kích thước icon nhỏ hơn */
+  }
+}
+
+
+
+footer {
+  background-color: #f0faff;
+  padding: 20px ; /* Thay đổi padding-bottom để chừa nhiều không gian phía dưới */
+  font-weight: 1000;
+  justify-content: center;
+  height: auto;
+  flex-direction: column;
+
+}
+
+
+/* Đường kẻ ngang */
+.separator {
+width: 100%; /* Trải dài toàn bộ chiều rộng */
+height: 1px; /* Độ dày của đường kẻ */
+background-color: #0b0066;/* Màu sắc của đường kẻ */
+margin: 20px 0; /* Khoảng cách trên dưới đường kẻ */
+}
+
+/*======= Icon display ====== */
+.icon-display {
+  display: flex;
+  justify-content: center;
+  justify-content:space-between;
+  color: #0b0066;
+  font-size: 25px;
+  width: 25%;
+  margin: 0 auto;
+  gap: 2px;
+}
+
+/* Cập nhật responsive */
+@media screen and (max-width: 768px) {
+  .icon-display {
+    font-size: 40px;
+    gap: 20px !important;
+    flex-wrap: wrap;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .icon-display {
+    font-size: 35px;
+    gap: 30px;
+   
+  }
+}
+
+
+/* Định dạng cho footer-navbar */
+.footer-navbar {
+display: flex; /* Dàn hàng ngang các liên kết */
+justify-content: space-between; /* Tạo khoảng cách đều nhau */
+flex-wrap: wrap; /* Cho phép các mục xuống dòng nếu không đủ chỗ */
+width: 100%; /* Đảm bảo chiếm hết chiều ngang của footer */
+max-width: 1700px; /* Giới hạn chiều rộng tối đa */
+margin: 0 auto; /* Canh giữa footer-navbar */
+padding: 0 10px; /* Khoảng cách ngang bên trong */
+text-decoration: none;
+padding: 0 10px; /* Khoảng cách nội bộ */
+position: relative;
+white-space: nowrap; /* Giữ văn bản không bị ngắt dòng */
+}
+
+/* Định dạng cho từng liên kết */
+.footer-navbar .nav-link {
+text-decoration: none; /* Xóa gạch chân */
+color: #333; /* Màu chữ */
+margin: 5px;
+font-size: 14px;
+text-align: center;
+flex-grow: 1; /* Giúp các liên kết có độ rộng bằng nhau */
+
+}
+
+/* Các mục nav */
+.nav-item {
+display: inline-block;
+position: relative;
+padding: 0 10px; /* Khoảng cách giữa các mục */
+white-space: nowrap; /* Giữ văn bản không bị ngắt dòng */
+}
+
+
+
+/* Đường kẻ dọc */
+.nav-item:not(:last-child)::after {
+  content: "";
+  display: inline-block;
+  width: 1.5px; /* Độ dày của đường kẻ (như separator) */
+  height: 30px; /* Chiều dài của đường kẻ */
+  background-color: #0b0066; /* Màu sắc đường kẻ */
+  margin-left: 10px; /* Khoảng cách giữa chữ và đường kẻ */
+  vertical-align: middle; /* Căn giữa theo chiều dọc */
+  font-size: 0;
+}
+
+/* === Responsive cho đường kẻ dọc === */
+/* Khi màn hình nhỏ (dưới 768px) */
+@media screen and (max-width: 768px) {
+  .footer-navbar {
+    flex-direction: column; /* Chuyển các mục thành hàng dọc */
+    align-items: center;
+  }
+  
+  .nav-item:not(:last-child)::after {
+    content: none; /* Loại bỏ đường kẻ dọc */
+  }
+}
+
+
+
+.icon-display {
+  display: flex;
+  justify-content: center;
+  justify-content:space-between;
+  color: #0b0066;
+  font-size: 25px;
+  width: 25%;
+  margin: 0 auto;
+  gap: 2px;
+}
+
+/* Style for the navbar */
+.footer-navbar  {
+  list-style: none;
+  display: flex; 
+  justify-content: center; 
+  gap: 30px; 
+  padding: 0; 
+  margin: 0; 
+  color: #505050;
+  text-decoration: none; 
+  font-size: 16px; 
+  transition: color 0.3s ease;
+}
+
+
+/* Cấu hình cho mỗi liên kết trong navbar */
+.nav-link {
+  color: #505050; /* Màu chữ mặc định */
+  text-decoration: none; /* Loại bỏ gạch dưới */
+  padding: 0 20px; /* Thêm khoảng cách trái và phải giữa các mục */
+  font-size: 15px; /* Kích thước chữ */
+  position: relative; /* Để có thể thêm gạch đứng */
+}
+
+
+/* Thêm gạch đứng giữa các mục */
+.nav-link:not(:last-child)::after {
+  content: "|"; /* Tạo pseudo-element là một đường gạch */
+  position:static; /* Đặt vị trí của gạch */
+  top: 0; /* Đặt gạch từ trên cùng */
+  right: 0; /* Đặt gạch vào cạnh phải của mỗi mục */
+  height: 50%; /* Chiều cao của gạch đứng */
+  width: 2px; /* Độ dày của gạch đứng, có thể thay đổi */
+  background-color: #505050; /* Màu của gạch đứng */
+}
+
+/* Điều chỉnh thẻ select */
+.language-select {
+padding: 4px 20px; /* Khoảng cách trong thẻ select */
+border: 1px solid #ccc; /* Viền của select */
+height: 5px;
+height: 40px;
+border-radius: 50px; 
+font-size: 16px; /* Kích thước font trong thẻ select */
+background-color: #5275f1;  
+color: white;
+appearance: none;
+text-align: center; 
+outline: none; 
+cursor: pointer; /* Thêm hiệu ứng con trỏ */
+
+
+}
+
+/* Thêm hiệu ứng hover cho thẻ select */
+.language-select:hover {
+background-color: #3e5db3;  /* Đổi màu viền khi hover */
+}
+
+
+/* Thêm mũi tên chỉ xuống khi chọn ngôn ngữ */
+.language-select::-ms-expand {
+display: none; /* Loại bỏ mũi tên mặc định trên trình duyệt Edge */
+}
+
+.language-select {
+-webkit-appearance: none; /* Loại bỏ mũi tên trên Safari */
+-moz-appearance: none; /* Loại bỏ mũi tên trên Firefox */
+appearance: none; /* Loại bỏ mũi tên trên các trình duyệt khác */
+background-image: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 10 10%22 width=%2210%22 height=%2210%22%3E%3Cpolygon points=%220,0 10,0 5,5%22 fill=%22white%22 /%3E%3C/svg%3E'); /* Thêm mũi tên tùy chỉnh */
+background-repeat: no-repeat;
+background-position: right 10px center; /* Đặt mũi tên bên phải */
+padding-right: 30px; /* Tạo khoảng cách cho mũi tên */
+}

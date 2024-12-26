@@ -2,7 +2,7 @@
     height: var(--header-height);
     background-color: var(--white-color);
     position: fixed;
-    z-index: 1;
+    z-index: 7;
     width: 100%;
     overflow: hidden;
     margin-top: 0;
@@ -74,6 +74,7 @@
     height: var(--header-with-search-height);
     display: flex;
     align-items: center;
+    margin-top: -14px;
 }
 
 .header__logo {
@@ -81,7 +82,7 @@
 }
 
 .header__logo-img {
-    width: 120px;
+    width: 200px;
 }
 
 .header__search {
@@ -95,6 +96,7 @@
     width: 250px;
     text-align: center;
     height: var(--header-with-search-height);
+    display: flex
 }
 
 .header__cart-icon {
@@ -103,9 +105,63 @@
     margin-top: 10px;
 }
 
+.filter {
+    width: 100px;
+    height: 35px;
+    font-size: 16px;
+    border: none;
+    border: 1px solid var(--main-color);
+    color: #1a0dab;
+    font-weight: 500;
+    /* text-align: center; */
+    margin-left: 45px;
+    border-radius: 10px;
+}
+
+.filter option {
+    color: #1a0dab;
+
+}
+
+.btn__filter {
+    margin-left: 10px;
+} 
+
 .container {
     padding-top: 130px;
 }
+
+.navbar {
+    width: 800px;
+}
+
+.form-inline .form-control.mr-sm-2 {
+    width: 700px;
+    height: 35px;
+    font-size: 1.4rem;
+}
+
+button {
+    width: 75px;
+    height: 35px;
+}
+
+.btn.btn-outline-success{
+    border-color: var(--main-color);
+    color: #1a0dab;
+    font-weight: 500;
+
+}
+
+.btn.btn-outline-success:hover {
+    background-color: var(--main-color);    
+}
+
+.btn.my-2.my-sm-0 {
+    font-size: 14px;
+}
+
+
 
 
 /* Ranking */
@@ -190,6 +246,12 @@ h1 {
     flex: 1;
 }
 
+.ranking-item .info p a {
+    text-decoration: none;
+    font-size: 16px;
+    color: var(--text-main-color);
+}
+
 .ranking-item .info .genre {
     font-size: 0.9em;
     color: #888;
@@ -215,6 +277,446 @@ h1 {
     right: 15px;
 }
 
+.ranking-list-search {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
 
+.ranking-list-search .ranking-item {
+    width: 342px;
+}
+
+.ranking-container-search h1 {
+    margin-left: 40px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* Sign up */
+
+@font-face {
+    font-family: 'CabinetGrotesk-Black';
+    src: url('CabinetGrotesk_Complete/CabinetGrotesk_Complete/Fonts/WEB/fonts/CabinetGrotesk-Black.woff2') format('woff2'),
+         url('CabinetGrotesk_Complete/CabinetGrotesk_Complete/Fonts/WEB/fonts/CabinetGrotesk-Black.woff') format('woff'),
+         url('CabinetGrotesk_Complete/CabinetGrotesk_Complete/Fonts/WEB/fonts/CabinetGrotesk-Black.ttf') format('truetype');
+         font-weight: 900;
+         font-display: swap;
+         font-style: normal;
+  }
+@font-face {
+    font-family: 'CabinetGrotesk-Extrabold';
+    src: url('CabinetGrotesk_Complete/CabinetGrotesk_Complete/Fonts/WEB/fonts/CabinetGrotesk-Extrabold.woff2') format('woff2'),
+         url('CabinetGrotesk_Complete/CabinetGrotesk_Complete/Fonts/WEB/fonts/CabinetGrotesk-Extrabold.woff') format('woff'),
+         url('CabinetGrotesk_Complete/CabinetGrotesk_Complete/Fonts/WEB/fonts/CabinetGrotesk-Extrabold.ttf') format('truetype');
+    font-weight: 800;
+    font-display: swap;
+    font-style: normal;
+}
+
+.container-signup {
+    font-family: 'Poppins', sans-serif;
+    color: #5c58ea;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    background: radial-gradient(circle at 0% 0%, #0a2353, #5c58ea, #57d7ff, #ffffff, #ffffff, #ffffff);
+    background-size: cover;
+    position: relative;
+}
+
+.background-image { 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    
+    z-index: 0;
+}
+
+.logo {
+    display: block;
+    margin: 0 auto 20px auto; /* Căn giữa logo và tạo khoảng cách phía dưới */
+}
+
+.form-container {
+    position: relative; /* Đảm bảo form nằm trên ảnh nền */
+    z-index: 1;
+    width: 500px;
+    padding: 20px 30px;
+    margin-left: auto; /* Đẩy form sang bên phải */
+    margin-right: 325px; /* Tùy chỉnh khoảng cách bên phải */
+    margin-top: -70px;
+    border-radius: 10px;
+    
+}
+
+.container-signup h1 {
+    font-family: 'CabinetGrotesk-Black';  /* Apply the custom font */
+    font-size: 46px;
+    font-weight: 900;
+    color: #0b0066;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.container-signup label {
+    font-family: 'CabinetGrotesk-Extrabold', sans-serif;
+    font-size: 23px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #5c58ea;
+}
+
+input {
+    padding: 10px;
+    margin-bottom: 25px;
+    font-size: 17px;
+    border: 1px solid #dddddd00;
+    border-radius: 25px;
+    color: #342edb;
+    padding: 10px 0 10px 20px;
+}
+
+input:focus {
+    outline: none;
+    border-color: #6c63ff;
+    
+}
+
+input::placeholder {
+    color: #6b63ffcd; /* Màu tím */
+    
+    font-size: 15px;
+}
+
+.container-signup button {
+    font-family: 'Josefin Sans', sans-serif;
+    padding: 10px;
+    background-color: #5479f7;
+    color: white;
+    font-size: 19px;
+    font-weight: 600;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    width: 70%;
+    min-width: 200px;
+    max-width: 600px;
+    margin: 0 auto;
+    height: 42px;
+}
+
+.container-signup button:hover {
+    background-color: #3760e7;
+}
+
+.terms {
+    font-size: 12px;
+    color: #0a0066;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.terms a {
+    color: #4A90E2;
+    text-decoration: none;
+}
+
+.terms a:hover {
+    text-decoration: underline;
+}
+
+    /* Hiệu ứng làm mờ trang khi pop-up mở */
+.blur {
+        filter: blur(30px) !important; /* Làm mờ mạnh hơn */
+        pointer-events: none;
+        transition: filter 0.5s ease; /* Hiệu ứng mượt */ 
+}
+  
+
+
+/* Gallery */
+.container-gallery {
+    padding-top: 180px;
+    width: 100%;
+    height: 30vh 30vh 30vh 30vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background: linear-gradient(
+        to top left,
+    rgba(103, 143, 214, 0.8) 5%, 
+    rgba(78, 118, 215, 0.9) 15%, 
+    rgba(50, 86, 208, 1) 40%, 
+    rgba(20, 42, 167, 1) 60%, 
+    rgba(11, 0, 102, 1) 70%, 
+    rgba(6, 20, 178, 1) 85%, 
+    rgba(0, 0, 0, 1) 100%
+    );
+    background-repeat: no-repeat; /* Không lặp lại gradient */
+    background-attachment: fixed; /* Gradient cố định khi cuộn trang */
+
+        background-repeat: no-repeat;
+
+}
+
+
+
+.gallery {
+    width: 100%;
+    margin-top: -62px;
+    height: 480px;
+}
+
+.gallery-container {
+    align-items: center;
+    display: flex;
+    height: 400px;
+    margin: 0 auto;
+    max-width: 1000px;
+    position: relative;
+    margin-top: -100px;
+}
+
+.gallery-item {
+    height: 200px;
+    opacity: 0;
+    position: absolute;
+    transition: all 0.3s ease-in-out;
+    width: 330px;
+    z-index: 0;
+    border-radius: 15px;
+    background-size: contain;
+    filter: brightness(1.2) contrast(1.1); /* Tăng độ sáng và độ tương phản */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); /* Hiệu ứng đổ bóng */
+}
+
+.gallery-item-1 {
+    left: 15%;
+    opacity: 1;
+    transform: translateX(-50%);
+}
+
+.gallery-item-2, .gallery-item-4 {
+    height: 250px;
+    opacity: 1;
+    width: 380px;
+    z-index: 1;
+}
+
+.gallery-item-2 {
+    left: 30%;
+    transform: translateX(-50%);
+}
+
+.gallery-item-3 {
+    box-shadow: -2px 5px 33px 6px rgba(0, 0, 0, 0.35);
+    height: 300px;
+    opacity: 1;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 430px;
+    z-index: 2
+}
+
+.gallery-item-4 {
+    left: 70%;
+    transform: translateX(-50%);
+}
+
+.gallery-item-5 {
+    left: 85%;
+    opacity: 11;
+    transform: translateX(-50%);
+}
+
+.gallery-controls {
+    display: flex;
+    justify-content: center;
+    margin: 25px 0;
+    height: 100px;
+    display: none;
+}
+
+.gallery-controls button {
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    font-size: 30px;
+    margin: 0 50px;
+    padding: 0 12px;
+    text-transform: capitalize;
+}
+
+.gallery-controls-button:focus {
+    outline: none;
+}
+
+.gallery-controls-previous {
+    position: relative;
+}
+
+.gallery-controls-previous::before {
+    border: solid #000;
+    border-width: 0 5px 5px 0;
+    content: '';
+    display: inline-block;
+    height: 5px;
+    left: -30px;
+    padding: 10px;
+    position: absolute;
+    top: 25%;
+    transform: rotate(135deg) translateY(-50%);
+    transition: left 0.15s ease-in-out;
+    width: 5px;
+}
+
+.gallery-controls-previous:hover::before {
+    left: -40px;
+}
+
+.gallery-controls-next {
+    position: relative;
+}
+
+.gallery-controls-next::before {
+    border: solid #000;
+    border-width: 0 5px 5px 0;
+    content: '';
+    display: inline-block;
+    height: 5px;
+    padding: 10px;
+    position: absolute;
+    right: -30px;
+    top: 45;
+    transform: rotate(-45deg) translateY(-50%);
+    transition: right 0.15s ease-in-out;
+    width: 5px;
+
+}
+
+.gallery-controls-next:hover:before {
+    right: -40px;
+}
+
+.gallery-nav {
+    bottom: -15px;
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    position: absolute;
+    width: 100%;
+}
+
+.gallery nav li {
+    background: #ccc;
+    border-radius: 50%;
+    height: 10px;
+    margin: 0 16px;
+    width: 10px;
+}
+
+.gallery-nav li.gallery-item-selected {
+    background: #555;
+}
+
+
+
+
+
+
+
+
+.gallery-pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 180px;
+}
+
+.gallery-pagination-bullet {
+    width: 12px;
+    height: 12px;
+    margin: 0 6px;
+    border-radius: 50%;
+    background-color: #ccc;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: -40px;
+    z-index: 6;
+    opacity: 1;
+}
+
+.gallery-pagination-bullet.active {
+    background-color: #333;
+    transform: scale(1.2);
+}
+
+
+
+
+
+/* Create */
+
+
+
+
+
+/* Media */
+@media(max-width: 991px) {
+    .grid {
+        max-width: 90%;
+    }
+
+    .info p a {
+        font-size: 1.2rem;
+    }
+
+    .header__navbar-item {
+        font-size: 1.4rem;
+    }
+
+    .header__navbar-item--login-circle a {
+        text-decoration: none;
+    }
+
+    .ranking-item .info p a {
+        text-decoration: none;
+        font-size: 1.2rem;
+
+    }
+
+    .container {
+        width: 850px;
+        margin: 0 auto;
+    }
+
+    .ranking-container h1 {
+        font-size: 1.8rem;
+    }
+
+    .ranking-item .rating {
+        top: 50%;
+    }
+}
+
+@media (max-width: 880px) {
+    
+}
 
 

@@ -6,90 +6,134 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
       <link rel="stylesheet" href="stylesheets/base.css">
       <link rel="stylesheet" href="stylesheets/main.css">
+      <link rel="stylesheet" href="stylesheets/beauthor.css">
+      <link rel="stylesheet" href="stylesheets/footer.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
       <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
       <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" integrity="sha512-1cK78a1o+ht2JcaW6g8OXYwqpev9+6GqOkz9xmBN9iUUhIndKtxwILGWYOSibOKjLsEdjyjZvYDq/cZwNeak0w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
       <title>Readsphera</title>
     <style>
 
   
     </style>
+
 </head>
 <body>
   <div class="app">
     <header class="header">
         <div class="grid">
             <nav class="header__navbar header__navbar--seperate">
-                <!-- <div class="header__logo">
-                    <img class="header__logo-img" src="images/Readsphera (1).png" alt="">
-                    Read
-                </div> -->
+              
                 <ul class="header__navbar-list">
-                    <li class="header__navbar-item header__navbar-item--left">
+                    <li class="header__navbar-item header__navbar-item--left" data-aos="zoom-in-left">
                         <i class="fa-solid fa-globe"></i>
                         <span><a href="/" style="text-decoration: none; color: var(--text-main-color)">Browse</a></span>
                     </li>
-                    <li class="header__navbar-item">
+                    <li class="header__navbar-item" data-aos="zoom-in-left">
                         <i class="fa-solid fa-trophy"></i>
-                        Rankings
+                        <a href="#rank" style="text-decoration: none; color: var(--text-main-color)">Rankings</a>
                     </li>
-                    <li class="header__navbar-item">
+                    <li class="header__navbar-item" data-aos="zoom-in-left">
                         <i class="fa-regular fa-pen-to-square"></i>
                         Creates
                     </li>
-                    <li class="header__navbar-item">
-                        <i class="fa-solid fa-bag-shopping"></i>
-                        Shop
-                    </li>
+                   
                 </ul>
 
                 <ul class="header__navbar-list">
-                    <li class="header__navbar-item"><span class="header__navbar-item--search-circle"><i class="fa-solid fa-magnifying-glass"></i></span></li>
-                    <li class="header__navbar-item"><a href="library" style="text-decoration: none; color: var(--text-main-color)">Library</a></li>
-                    <li class="header__navbar-item"><i class="fa-solid fa-gear"></i></li>
-                    <li class="header__navbar-item"><span class="header__navbar-item--login-circle"><a href="signup">Sign Up</a></span></li>
-                    <li class="header__navbar-item"><span class="header__navbar-item--login-circle"><a href="login">Log In</a></span></li>
+                    <!-- <li class="header__navbar-item"><span class="header__navbar-item--search-circle"><i class="fa-solid fa-magnifying-glass"></i></span></li> -->
+                    <li class="header__navbar-item" data-aos="zoom-in-left"><a href="library" style="text-decoration: none; color: var(--text-main-color)">Library</a></li>
+                    <!-- <li class="header__navbar-item"><i class="fa-solid fa-gear"></i></li> -->
+                    <li class="header__navbar-item" data-aos="zoom-in-left"><span class="header__navbar-item--login-circle"><a href="signup" style="text-decoration: none;">Sign Up</a></span></li>
+                    <% if (user) { %>
+                        <li class="header__navbar-item" data-aos="zoom-in-left"><span class="header__navbar-item--login-circle"></span><%= user.username %></li>
+                        <li class="header__navbar-item" data-aos="zoom-in-left"><span class="header__navbar-item--login-circle"><a href="/logout" style="text-decoration: none;">Log Out</a></span></li>
+                      <% } else { %>
+                        <li class="header__navbar-item" data-aos="zoom-in-left"><span class="header__navbar-item--login-circle"><a href="login" style="text-decoration: none;">Log In</a></span></li>
+                      <% } %>
+
                 </ul>
 
             </nav>
-            <!-- <div class="header__2"></div> -->
              <div class="header-with-search">
-                  <div class="header__logo">
-                      <img src="" alt="" class=".header__logo-img">
+                  <div class="header__logo" data-aos="fade-right" data-aos-delay="120">
+                      <img src="imgContent/logo.png" alt="" class="header__logo-img">
+                      
                   </div>
 
-                  <div class="header__search">
+                  <div class="navbar" data-aos="fade-right" data-aos-delay="150">
+                    <form class="form-inline" action="/" method="get">
+                        <input class="form-control mr-sm-2" name="query" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                      </form>
 
                   </div>
 
-                  <div class="header__cart">
-                      <i class="fa-solid fa-cart-shopping header__cart-icon"></i>
+                
 
-                  </div>
+                  <div class="header__cart" data-aos="fade-left" data-aos-delay="300"> 
+                     
+                      <form action="/" method="get" class="form-inline form-inline-filter">
+                        
+                        <select name="query" id="type" class="form-inline filter">
+                            <option value="" class="form-control mr-sm-2">All</option>
+                            <% uniqueType.forEach(function(types) { %><option value="<%= types %>" class="form-control mr-sm-2"><%= types %></option> <% }) %>
+                        </select>
+                        <button type="submit"  class="btn btn-outline-success my-2 my-sm-0 btn__filter">Filter</button>
+                    </form>
+                   </div>  
              </div>
 
         </div>
     </header>
 
 
-    <div class="container">
-        <div class="ranking-container">
+    
+
+    <div class="container-gallery" data-aos="zoom-in">
+
+        <div class="gallery">
+            <div class="gallery-container">
+                <% gallery.forEach((book, i) => { %>
+                <a href="<%= book._id %>"><img class="gallery-item gallery-item-<%= i + 1 %>" src="<%= book.image %>" data-index="<%= i + 1 %>"></a> <% }) %>
+                
+            </div>
+        
+            <div class="gallery-controls"></div>
+            <div class="gallery-pagination"></div>
+        </div>
+
+
+        
+        
+
+    </div>
+    <div class="container" id="rank">
+        
+        <div class="ranking-container" data-aos="zoom-in-up">
             <h1>Ranking</h1>
             <div class="ranking-categories">
                 <!-- Category: Novel -->
-                <div class="category">
+                <div class="category" data-aos="zoom-in-up">
                     <h2>Novel</h2>
                     <div class="ranking-list">
                         
                         
                             <% types.forEach(function(img, i) { %>
     
-                                <div class="ranking-item active">
+                                <div class="ranking-item active" data-aos="fade-up">
                                     <div class="rank"><%= i + 1 %></div>
                                     <div class="image"><img src="<%= img.image %>" alt="" class="image"></div>
                                     <div class="info">
-                                      <p><a href="<%= img._id %>"  style="text-decoration: none; font-size: 16px; color: var(--text-main-color)"><%= img.name %></a></p>
+                                        <% if (user) { %>
+                                        <p><a href="<%= img._id %>"><%= img.name %></a></p> <% } else { %>
+                                        <p><a href="<%= img._id %>"><%= img.name %></a></p> <% } %>
                                         <span class="genre"><%= img.type %></span>
                                         <span class="rating">⭐ 4.9</span>
                                         <h3><%= img.description %></h3>
@@ -100,17 +144,17 @@
                     </div>
                 </div>
                 <!-- Category: Podcast -->
-                <div class="category">
+                <div class="category" data-aos="zoom-in-up">
                     <h2>Podcast</h2>
                     <div class="ranking-list">
                         <% if (typeFantasy.length > 0) { %>
                             <% typeFantasy.forEach(function(img, i) { %>
     
-                                <div class="ranking-item">
+                                <div class="ranking-item" data-aos="fade-up">
                                     <div class="rank"><%= i + 1 %></div>
                                     <div class="image"><img src="<%= img.image %>" alt="" class="image"></div>
                                     <div class="info">
-                                        <p><a href="<%= img._id %>" style="text-decoration: none; font-size: 16px; color: var(--text-main-color)"><%= img.name %></a></p>
+                                        <p><a href="<%= img._id %>"><%= img.name %></a></p>
                                         <span class="genre"><%= img.type %></span>
                                         <span class="rating">⭐ 4.9</span>
                                         <h3><%= img.description %></h3>
@@ -122,15 +166,15 @@
                     </div>
                 </div>
                 <!-- Category: Fanfic -->
-                <div class="category">
+                <div class="category" data-aos="zoom-in-up">
                     <h2>Fanfic</h2>
                     <div class="ranking-list">
                         <% books.forEach(function(type, i) { %>
-                            <div class="ranking-item">
+                            <div class="ranking-item" data-aos="fade-up">
                                 <div class="rank"><%= i + 1 %></div>
                                 <div class="image"><img src="<%= type.image %>" alt="" class="image"></div>
                                 <div class="info">
-                                    <p><a href="<%= type._id %>"  style="text-decoration: none; font-size: 16px; color: var(--text-main-color)"><%= type.name %></a></p>
+                                    <p><a href="<%= type._id %>"><%= type.name %></a></p>
                                     <span class="genre"><%= type.type %></span>
                                     <span class="rating">⭐ 4.9</span>
                                     <h3><%= type.description %></h3>
@@ -144,9 +188,114 @@
             </div>
         </div>
     </div>
-    <footer class="footer">
 
+
+    <% if (Books.length > 0 && searchQuery) { %>
+        <div class="ranking-container ranking-container-search">
+        <h1>Search Results for "<%= searchQuery %>"</h1>
+        <div class="ranking-list ranking-list-search">
+          <% Books.forEach((book, i) => { %>
+            <div class="ranking-item">
+                <div class="rank"><%= i + 1 %></div>
+                <div class="image"><img src="<%= book.image %>" alt="" class="image"></div>
+                <div class="info">
+                    <p><a href="<%= book._id %>"><%= book.name %></a></p>
+                    <span class="genre"><%= book.type %></span>
+                    <span class="rating">⭐ 4.9</span>
+                    <h3><%= book.description %></h3>
+                    
+                </div>
+            </div>
+          <% }) %>
+        </div>
+    </div>
+    
+          
+    
+      <% } %>
+
+    <div class="container-beauthor" data-aos="zoom-in-up">
+        <div class="left-content">
+            <h1>
+                <span class="read-authors">Read</span><span class="sphera">Sphera</span>
+                <br>
+                <span class="authors">Authors</span>
+            </h1>
+            
+            <h2>
+                 <span class="line">Have a story to tell?</span>
+                 <span class="line">Share it on Readsphera</span>
+                 <span class="line">Find everything you need to get it published!</span>
+            </h2>
+       
+            <button class="btn">
+             Find Out More <span class="arrow">&gt;</span>
+            </button>
+        </div>
+    
+       <div class="extra">
+        <!-- Hình ảnh thêm vào bên phải -->
+        <img src="imgContent/bookauthor_logo.png" alt="Additional Image">
+       </div>
+    
+    </div>
+    
+
+    
+    <footer>
+        <h1 style="text-align: center; align-content: flex-start;" data-aos="zoom-in-right">
+
+            <img src="imgContent/logo.png" alt="ReadSphera Logo" style="max-width: 300px; height: auto;" data-aos="zoom-in-right">
+        </h1>
+        
+        <!-- Đường kẻ ngang -->
+        <div class="separator" data-aos="zoom-in-right"></div>
+        
+    
+        <div class="icon-display" data-aos="zoom-in-right">
+            <i class="fa-brands fa-instagram" data-aos="zoom-in-right"></i>
+            <i class="fa-brands fa-facebook" data-aos="zoom-in-right"></i>
+            <i class="fa-brands fa-spotify" data-aos="zoom-in-right"></i>
+            <i class="fa-brands fa-square-youtube" data-aos="zoom-in-right"></i>
+        </div>
+    
+        <br>
+    
+        <nav class="footer-navbar" data-aos="zoom-in-right">
+            <div class="nav-item" data-aos="zoom-in-right">About</div>
+            <div class="nav-item" data-aos="zoom-in-right">Feedback</div>
+            <div class="nav-item" data-aos="zoom-in-right">Help</div>
+            <div class="nav-item" data-aos="zoom-in-right">Terms</div>
+            <div class="nav-item" data-aos="zoom-in-right">Privacy</div>
+            <div class="nav-item" data-aos="zoom-in-right">Advertise</div>
+            
+            <!-- Thay thế 'Language' div bằng select -->
+        <div class="nav-item">
+                
+                 
+
+         </div>
+                
+            
+        </nav>
+    
     </footer>
+
+      
+
+
+     
+
+      
+      
+
+            
+    
+      
+
+    <!-- <footer class="footer">
+
+    </footer> -->
 
 
 
@@ -170,27 +319,150 @@
         });
     });
 
+
 </script>
 
 
 
 
+
+
+
+  
     
 
-    <!-- <h1>Book List</h1>
-  <ul>
-    <% books.forEach((book, type) => { %>
-      <li>
-        <a href="/<%= book._id %>">
-          <%= book.name %> 
-        </a>
-        <p><%= book.description %></p>
-        <p><%= book.type %></p>
-      </li>
-    <% }) %>
-  </ul> -->
 
 
 
+
+
+
+
+<script>
+    const galleryContainer = document.querySelector('.gallery-container');
+const galleryControlsContainer = document.querySelector('.gallery-controls');
+const galleryPaginationContainer = document.querySelector('.gallery-pagination');
+const galleryControls = ['previous', 'next'];
+const galleryItems = document.querySelectorAll('.gallery-item');
+
+class Carousel {
+    constructor(container, items, controls) {
+        this.carouselContainer = container;
+        this.carouselControls = controls;
+        this.carouselArray = [...items];
+        this.currentIndex = 0; // Chỉ số item đầu tiên
+        this.autoSlideInterval = null; // Biến lưu trữ trạng thái auto-slide
+    }
+
+    updateGallery() {
+        // Loại bỏ tất cả các class của các item
+        this.carouselArray.forEach(el => {
+            el.classList.remove('gallery-item-1', 'gallery-item-2', 'gallery-item-3', 'gallery-item-4', 'gallery-item-5');
+        });
+
+        // Thêm class mới cho các item đầu tiên được hiển thị
+        const totalItems = this.carouselArray.length;
+        for (let i = 0; i < 5; i++) {
+            const itemIndex = (this.currentIndex + i) % totalItems; // Xoay vòng
+            this.carouselArray[itemIndex].classList.add(`gallery-item-${i + 1}`);
+        }
+
+        // Cập nhật pagination
+        this.updatePagination();
+    }
+
+    setCurrentState(direction) {
+        if (direction === 'previous') {
+            this.currentIndex = (this.currentIndex - 1 + this.carouselArray.length) % this.carouselArray.length;
+        } else if (direction === 'next') {
+            this.currentIndex = (this.currentIndex + 1) % this.carouselArray.length;
+        }
+        this.updateGallery();
+    }
+
+    setControls() {
+        this.carouselControls.forEach(control => {
+            const button = document.createElement('button');
+            button.className = `gallery-controls-${control}`;
+            button.innerText = control;
+            button.addEventListener('click', () => {
+                this.stopAutoSlide(); // Dừng auto-slide khi nhấn nút điều khiển
+                this.setCurrentState(control);
+                this.startAutoSlide(); // Bắt đầu lại auto-slide
+            });
+            galleryControlsContainer.appendChild(button);
+        });
+    }
+
+    setPagination() {
+        // Tạo pagination bullets
+        galleryPaginationContainer.innerHTML = ''; // Xóa các bullets cũ
+        this.carouselArray.forEach((_, index) => {
+            const bullet = document.createElement('button');
+            bullet.className = 'gallery-pagination-bullet';
+            bullet.dataset.index = index;
+            bullet.addEventListener('click', () => {
+                this.stopAutoSlide(); // Dừng auto-slide khi nhấn pagination
+                this.goToSlide(index);
+                this.startAutoSlide(); // Bắt đầu lại auto-slide
+            });
+            galleryPaginationContainer.appendChild(bullet);
+        });
+    }
+
+    updatePagination() {
+        // Đánh dấu bullet active
+        const bullets = document.querySelectorAll('.gallery-pagination-bullet');
+        bullets.forEach((bullet, index) => {
+            bullet.classList.toggle('active', index === this.currentIndex);
+        });
+    }
+
+    goToSlide(index) {
+        this.currentIndex = index;
+        this.updateGallery();
+    }
+
+    useControls() {
+        // Kích hoạt các nút điều khiển
+        const triggers = [...galleryControlsContainer.childNodes];
+        triggers.forEach(control => {
+            control.addEventListener('click', e => {
+                e.preventDefault();
+                const direction = control.className.includes('previous') ? 'previous' : 'next';
+                this.setCurrentState(direction);
+            });
+        });
+    }
+
+    startAutoSlide(interval = 3000) {
+        // Tự động chuyển slide
+        this.autoSlideInterval = setInterval(() => {
+            this.setCurrentState('next');
+        }, interval);
+    }
+
+    stopAutoSlide() {
+        // Dừng auto-slide
+        if (this.autoSlideInterval) {
+            clearInterval(this.autoSlideInterval);
+            this.autoSlideInterval = null;
+        }
+    }
+}
+
+// Khởi tạo Carousel
+const exampleCarousel = new Carousel(galleryContainer, galleryItems, galleryControls);
+exampleCarousel.setControls();
+exampleCarousel.setPagination();
+exampleCarousel.useControls();
+exampleCarousel.updateGallery(); // Khởi tạo gallery
+exampleCarousel.startAutoSlide(); // Bắt đầu auto-slider
+
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" integrity="sha512-A7AYk1fGKX6S2SsHywmPkrnzTZHrgiVT7GcQkLGDe2ev0aWb8zejytzS8wjo7PGEXKqJOrjQ4oORtnimIRZBtw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    AOS.init();
+</script>
 </body>
 </html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Book</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+<body>
+    <h1>Update Book</h1>
+    <form action="/admin/update/<%= book._id %>" method="POST" enctype="multipart/form-data">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" value="<%= book.name %>" required><br>
+
+        <label for="type">Author:</label>
+        <input type="text" id="type" name="type" value="<%= book.type %>" required><br>
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" required><%= book.description %></textarea><br>
+
+        <label for="type">Image:</label>
+        <input type="file" name="image" accept="image/*" />
+        <label for="file">PDF File Name:</label>
+        <input type="file" name="file" accept=".pdf" />
+        <label for="status">Status</label>
+                    <select id="status" name="status" class="input-field">
+                            <option value="Completed">Completed</option>
+                            <option value="In progress">In progress</option>
+                    </select>
+
+        <button type="submit">Update Book</button>
+    </form>
+
+
+
+
+
+
+
+</body>
+</html>

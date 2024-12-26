@@ -1,0 +1,165 @@
+/* Container */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 500px; 
+    margin: 20px auto; /* Căn giữa container và tạo khoảng cách với các thành phần xung quanh */
+    box-sizing: border-box;
+}
+
+/* Image container*/
+.image-container {
+    width: 20%;
+    height: 300px;
+    background-color: #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    border-radius: 8px;
+    margin-left: 20px;
+}
+
+.image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    
+}
+
+/* Phần Title, Status, Nútút */
+.text-container {
+    width: 70%; 
+    margin-top: 50px;
+}
+
+/*Book title */
+h1 {
+    margin-top: 15px;
+    font-size: 20px;
+    color: #0b0066;
+}
+
+h3 {
+    font-size: 18px;
+    color: #777;
+}
+
+/* Icon container */
+.icon-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.icon-wrap {
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Khoảng cách giữa icon và phần info */
+}
+
+/* Icon style */
+.icon-wrap i {
+    font-size: 20px;
+    color: #0b0066;
+}
+
+
+.icon-info {
+    display: flex;
+    flex-direction: column; /* Sắp xếp title và count theo chiều dọc */
+    align-items: flex-start; 
+}
+
+/* Title style */
+.icon-title {
+    font-size: 14px;
+    color: #0b0066;
+}
+
+/* Count style */
+.icon-count {
+    font-size: 14px;
+    color: #7d7d7d;
+    font-weight: bold;
+}
+
+/* Đường phân cách */
+.separator {
+    width: 1.5px; /* Độ dày của đường */
+    height: 40px; /* Chiều cao của đường */
+    background-color: #b3b3b3; /* Màu của đường */
+    margin: 0 10px; /* Khoảng cách hai bên */
+}
+
+
+/* Status */
+.status {
+    font-weight: bold;
+    padding: 2px 8px; /* Tăng khoảng cách bên trong */
+    border-radius: 50px;
+    display: inline-block;
+    min-width: 120px;
+    text-align: center; /* Canh giữa chữ trong khung */
+    margin-top: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    background-color: transparent;
+    color: #0b0066; /* Màu chữ mặc định */
+    cursor: pointer;
+    appearance: none; 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+/* Khi chọn "Finish" */
+.status option[value="finish"]:checked {
+    background-color: #d4edda; /* Nền xanh lá pastel */
+    color: #4caf50; /* Chữ xanh lá */
+    border: 1.5px solid #4caf50; /* Viền xanh lá */
+}
+
+/* Khi chọn "On hold" */
+.status option[value="on-hold"]:checked {
+    background-color: #fff3cd; /* Nền vàng chanh */
+    color: #856404; /* Chữ vàng */
+    border: 1.5px solid #856404; /* Viền vàng */
+}
+
+
+p {
+    font-size: 17px;
+    color: #0b0066;
+    margin-top: 10px;
+    display: flex;
+    align-items: center; 
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.text-container button {
+    padding: 5px 20px;
+    background-color: transparent;
+    color: #0b0066;
+    border: 1.5px solid #0b0066;
+    border-radius: 50px; /* Không cần !important nếu selector đã cụ thể */
+    flex: 1;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 40%;
+    margin-top: 20px;
+}
+
+/* Hover effect */
+button:hover {
+    background-color: #0b0066; /* Nền xanh đậm khi hover */
+    color: white; /* Chữ trắng khi hover */
+}
+

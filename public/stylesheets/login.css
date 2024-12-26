@@ -1,0 +1,328 @@
+/* Tổng thể */
+body {
+    display: flex;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #0a2353 0%, #5c58ea 20%, #57d7ff 40%, #ffffff 60%, #ffffff 80%, #ffffff 100%);
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    color: #0b0066;
+    overflow: scroll;
+    position: relative; 
+    }
+    
+  
+  
+    /* Phần nhập thông tin */
+    .login-section {
+      background: transparent;
+      padding: 30px;
+      border-radius: 10px;
+      width: 100%;
+      max-width: 400px;
+      transform: translateX(-50px); 
+      position: relative; 
+      z-index: 10; 
+    }
+    
+    /* Mask image */
+  .image-section {
+    display: flex;
+      justify-content: center;  
+      align-items: center;
+      max-width: 100%;
+      margin-top: -10px;
+      position: absolute; /* Để phần ảnh có thể chồng lên input */
+      top: 0;
+      left: 55%;
+      transform: translateX(-50%) translateY(0); 
+      z-index: 1; /* Để phần ảnh ở dưới input */
+  }
+  
+  .image-section img {
+    width: 1000px;           
+    height: 800px;             
+    max-width: 1200px;        
+    transform: scaleX(-1);   /* Lật ảnh theo chiều ngang */
+    position: relative;      
+    top: -10px;  
+    filter: blur(0); 
+    transition: filter 0.5s ease; 
+  }
+  
+  /* Responsive cho màn hình nhỏ đối với input và Mask logo */
+  @media (max-width: 768px) {
+    /* Khi màn hình thu nhỏ, làm mờ ảnh và phần input-section nằm đè lên ảnh */
+    .image-section img {
+        filter: blur(2px); /* Làm mờ ảnh */
+        width: 500px;
+        height: 450px;
+    }
+  
+    /* Phần nhập liệu (input-section) sẽ nằm đè lên ảnh */
+    .login-section {
+        background: transparent; /* Màu nền cho phần nhập liệu */
+        padding: 20px;  
+        z-index: 10; 
+        margin-top: 20px; 
+      
+    }
+  
+    /* Đảm bảo ảnh không bị xê dịch quá nhiều */
+    .image-section {
+        top: 0;
+    }
+  }
+  
+    /* Logo ReadSphera */
+    .logo img {
+      display: block;
+      margin: 0 auto;
+      margin-bottom: 10px;
+      width: 150px;
+    }
+    /* Responsive RD logologo*/
+  @media (max-width: 768px) {
+    .logo img {
+        width: 120px;  
+    }
+  }
+  
+    /* Welcome back */
+    .login-section h1 {
+      color: #0b0066;
+      text-align: center;
+      font-size: 35px;
+      font-weight: bold;
+      margin: 20px 0;
+      white-space:  nowrap;
+    }
+    
+    /* Responsive Welcome backback*/
+  @media (max-width: 768px) {
+    .login-section h1 {
+        font-size: 22px;  
+    }
+  }
+  
+    /* Phần nhập tt ng dùng*/
+    .input-group {
+      position: relative;
+      margin-bottom: 25px;
+      width: 100%;
+    }
+     
+    /* Input */
+    .input-group input {
+      max-width: 350%;
+      width: 100%; 
+      padding: 8px 16px; 
+      border: none; 
+      border-radius: 50px;
+      box-sizing: border-box; 
+      font-size: 16px;
+    }
+  
+    /* Place holder */
+    .input-group input::placeholder {
+      color: #0b0066; 
+      font-size: 16px;
+  }
+  
+  .input-group input:focus {
+      outline: none;
+      border-color: #0b0066;
+  }
+  
+  .password-wrapper {
+      position: relative;
+    
+  }
+  
+  /* Responsive cho input "user name","password" */
+  @media (max-width: 768px) {
+    .input-group input {
+      font-size: 14px; 
+      padding: 6px 12px; 
+      max-width: 280px; 
+    }
+  
+    .input-group input::placeholder {
+      font-size: 12px; 
+    }
+  
+    /* Đảm bảo input vẫn giữ vị trí khi thu nhỏ màn hình */
+    .input-group {
+      margin-bottom: 15px; 
+      display: flex;
+      justify-content: center; 
+    }
+  }
+  
+     /* Forgot Password? */
+     .login-section h3 {
+      font-size: 16px;
+      color: #0b0066;
+      position: relative;  /* Để có thể dịch h3 lên gần với Password */
+      top: -39px;           
+      text-align: right;   
+      margin-right: 40px; 
+    }
+    
+  
+  /* Responsive cho forgot password  */
+  @media (max-width: 768px) {
+    
+    .login-section h3 {
+      font-size: 14px; 
+      margin-top: 35px; /* Tăng khoảng cách giữa h3 và phần nhập liệu */
+    }
+  }
+  
+    /* Nút Login */
+    .login-section button {
+      width: 100%;
+      padding: 10px;
+      background-color: #0b0066;
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-size: 16px;
+      cursor: pointer;
+      top: -30px;
+      position: relative;
+    }
+    
+    button:hover {
+      background-color: #37008c;
+    }
+  
+  /* Responsive cho nút Login */
+  @media (max-width: 768px) {
+    .login-section button {
+      width: 76%; 
+      font-size: 14px; 
+      padding: 5px 0; 
+      margin-left: 40px ; 
+    }
+  }
+    
+  /* Separator */
+  .separator-line {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; /* Khoảng cách giữa chữ và đường kẻ */
+    margin: 20px 0;
+  }
+  
+  .separator-line .line {
+    flex-grow: 1; /* Để đường kẻ kéo dài */
+    height: 1px;
+    background-color: #0b0066; 
+  }
+  
+  /* Or continue with */
+  .separator-line span {
+    color: #0b0066;
+    font-size: 16px;
+    white-space: nowrap; 
+  }
+  
+  /* Responsive cho Separators*/
+  @media (max-width: 768px) {
+    .separator-line span {
+      font-size: 14px; 
+    }
+  
+    .separator-line {
+      gap: 8px; /* Điều chỉnh khoảng cách giữa chữ và đường kẻ khi thu nhỏ màn hình */
+    }
+  
+    .separator-line .line {
+      flex-grow: 0; 
+      width: 20%; 
+    }
+  }
+  
+  /* Google , Facebook button */
+  .social-buttons {
+      display: flex;            
+      justify-content: space-between;  
+      gap: 20px;                 
+      margin-top: 40px;   /*khoảng cách với separator*/
+    }
+      
+    .social-buttons button {
+      width: 50%;
+      padding: 7px;
+      background-color: #0b0066;
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-size: 16px;
+      margin: 12px 0;
+      cursor: pointer;
+    }
+  
+    /* Icon google, fb */
+    .social-buttons button i {
+      margin-right: 17px;
+    }
+  
+  /* Responsive cho google, fb button */
+  @media (max-width: 768px) {
+    .social-buttons {
+      justify-content: center; /* Dịch các nút vào giữa */
+    }
+  
+    .social-buttons button {
+      width: 38%; 
+      padding: 5px;
+      font-size: 12px;
+      gap: 3px; 
+    }
+  
+    .social-buttons button i {
+      font-size: 14px;
+      margin-right: 10px; /* Giảm khoảng cách giữa icon và chữ */
+    }
+  
+    /* Gap giữa các nút */
+    .social-buttons {
+      gap: 10px; /* Đảm bảo khoảng cách giữa các nút nhỏ hơn */
+    }
+  }
+    
+  /* Dòng yc đăng kí "Register now" */
+    .login-section h2 {
+      text-align: center;
+      font-size: 16px;
+      color: #0b0066;
+    }
+   /* Register now */
+    .login-section h2 .register-link {
+      color: #5479f7;  
+      margin-left: 10px;
+    }
+  
+    /* Responsive cho màn hình nhỏ */
+  @media (max-width: 768px) {
+    .login-section h2 {
+      font-size: 14px; /* Giảm kích thước chữ */
+    }
+  
+    .login-section h2 .register-link {
+      font-size: 14px; /* Giảm kích thước chữ cho phần link */
+    }
+  }
+  
+   
+    
+    

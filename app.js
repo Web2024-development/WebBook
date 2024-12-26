@@ -6,15 +6,37 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var session = require('express-session');
-var app = express();
-const booksRouter = require('./routes/books'); 
+const MongoStore = require('connect-mongo')
+const methodOverride = require('method-override');
 
-// app.use('/', booksRouter);
+
+
+var app = express();
+
+
+
+
+
+
+
+app.use('/public', express.static('public'));
+app.get('/favicon.ico', (req, res) => res.status(204).end());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use('/public', express.static(path.join(__dirname, 'public')));
+app.use(methodOverride('_method'));
+
+
 
 app.use(session({
   secret: 'some secret',
-  cookie: {maxAge: 3000},
+  resave: false,
   saveUninitialized: false,
+  cookie: {maxAage: 1000 * 60 * 60 * 24, httpOnly: true},
+  store: MongoStore.create({
+    mongoUrl: 'mongodb+srv://24560002:Info123@csbu103.q3boj.mongodb.net/?retryWrites=true&w=majority&appName=CSBU103'
+  })
+
 }))
 
 const mongoose = require('mongoose');

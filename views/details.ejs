@@ -4,13 +4,471 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Dấu + icon -->
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+/>
+<!-- CSS riêng cho trang này -->
+<link rel="stylesheet" href="stylesheets/book-detail.css">
 </head>
 <body>
-    <h1>DETAILS OF BOOK</h1>
-  <img src="<%= book.image %>" alt="<%= book.name %> cover" style="width: 200px;">
-  <p><strong>Description:</strong> <%= book.description %></p>
-  <!-- <a href="<%= book.filePath %>" target="_blank">Read Book</a> -->
-  <br>
-  <a href="/">Back to Book List</a>
+ 
+
+
+    <!-- Book Information -->
+    <div class="book-container">
+        <div class="book-image">
+            <img src="<%= book.image %>" alt="<%= book.name %>">
+        </div>
+        <div class="book-details">
+            <h1><%= book.name %></h1>
+            <div class="rating">
+                ⭐⭐⭐⭐⭐ <span>5.0</span>   <span class="circle">.</span>   <span class="reviewers"><%= book.views %></span>   <span class="reviews">views</span>
+            </div>
+            <div class="top-trending">
+                <div class="badge-number">#1</div>
+                <span>in Top Trending</span>
+            </div>
+            
+            <div class="book-info">
+                
+                <div>
+                    <div class="info-title">Category</div>
+                    <div class="info-value"><%= book.type %></div>
+                </div>
+                
+                <div>
+                    <div class="info-title">Status</div>
+                    <div class="info-value"><%= book.status %></div>
+                </div>
+            </div>
+            <hr class="read-addtolibrary-hr"> <!-- Đường line dưới -->
+            
+            <% if (user) { %> <form action="/views/<%= book._id %>" method="post">
+              <div class="buttons">
+                  <button type="submit" class="read-button">Read</button>
+                  <a href="/" class="read-button" style="text-decoration: none; color: white">Back</a>
+              </div>
+            </form> <% } else { %> <div class="buttons">
+              <a href="login" class="read-button">Login</a>
+              <a href="/" class="read-button" style="text-decoration: none; color: white">Back</a>
+              
+          </div> <% } %>  
+          
+            
+        </div>
+    </div>
+
+    <!-- Synopsis -->
+    <div class="synopsis-container">
+        <h3 class="synopsis-title">Synopsis</h3>
+        <p class="synopsis-text" id="synopsis-text">
+            <!-- Nội dung sẽ được tự động cắt bởi JS -->
+        </p>
+        <span class="see-more" id="see-more" style="display: none;" onclick="toggleSeeMore()">...See more</span>
+    </div>
+    <!-- Table of container -->
+    <!-- <div class="toc-container">
+        <h2 class="toc-title">Table of Contents</h2> -->
+
+        <!-- Latest Release Section -->
+        <!-- <p class="latest-release">
+            <span class="latest-label">Latest Release:</span>
+            <span class="latest-chapter"></span>
+            <span class="latest-sort">Latest <img src="../assets/images/icons/latest.png" alt="Latest Icon" class="latestlogo"/></span>
+        </p> -->
+    
+<!-- Divider -->
+<!-- Đường phân cách trang, thường dùng để chia các phần nội dung -->
+        <!-- <hr class="divider"> -->
+
+<!-- Chapters Grid -->
+<!-- Khu vực hiển thị danh sách các chương truyện, sử dụng grid layout -->
+        <!-- <div class="chapters-grid" id="chapters-grid"> -->
+    <!-- Các chương truyện sẽ được hiển thị tại đây thông qua render động -->
+        <!-- </div> -->
+
+<!-- Pagination Section -->
+<!-- Khu vực phân trang, cho phép người dùng chuyển đổi giữa các trang của danh sách chương -->
+        <!-- <div class="pagination" id="pagination"> -->
+    <!-- Nút phân trang sẽ được tạo động -->
+        </div>
+
+<!-- Scroll to Top Button -->
+        <div class="scroll-top">&#11014;</div>
+    </div>
+<!-- Rating Section -->
+<section class="rating-section">
+    <div class="toc-container">
+        <h2 class="toc-title">What readers say about: <span>"<%= book.name %>"</span></h2>
+        <p class="reandcom">Comments:</p>
+        <hr hr class="rating-divi">            
+    </div>
+    <!-- <div class="rating-box"> -->
+        <!-- <div class="average-score">
+      
+            <button class="rate-btn" onclick="showPopup()">Comment</button>
+        </div> -->
+         <!-- Các thanh rating sẽ được thêm vào đây bởi JavaScript --> </div>
+        
+    <!-- </div> -->
+</section>
+
+
+
+<section class="comments-section">
+  <% book.comments.forEach(comment => { %>
+    <div class="comment">
+        <div class="user-avatar"></div>
+        <div class="comment-content">
+            <span class="user-name"><%= comment.user.username %></span>
+            <span class="comment-date"><%= comment.date.getDate() < 10 ? `0${comment.date.getDate()}` : comment.date.getDate() %>/<%= (comment.date.getMonth() + 1) < 10 ? `0${comment.date.getMonth() + 1}` : (comment.date.getMonth() + 1) %>/<%= comment.date.getFullYear() %></span>
+            <p class="comment-text" name="content"><%= comment.content %></p>
+            <% if (user && comment.user.toString() !== user.id) { %>
+                
+              <form action="/<%= book._id %>/comments/<%= comment._id %>/delete" method="POST">
+                <button type="submit" class="btn btn-delete">Delete</button>
+              </form>
+              
+            <% } %>
+            
+        </div>
+
+    </div>
+  <% }) %>
+  <form action="/<%= book._id %>/comments" method="POST">
+    <% if (user) { %>
+<!-- <div class="popup-overlay" id="popupOverlay"> -->
+<div class="popup-content">
+    <h3 class="popup-title">Comment</h3>
+    
+    <div class="comment-section">
+        <div class="comment-label">Comment:</div>
+        <textarea name="content" id="commentText" placeholder="Feel free to share your thoughts and ratings here to help others get more information about the story!" maxlength="200"></textarea>
+        <div class="character-count" id="charCount">0/200</div>
+    </div>
+    <!-- <button type="submit" class="btn btn-submit">Submit</button> -->
+    <button type="submit" class="btn btn-submit">Submit</button>
+    <!-- <button class="btn btn-close" onclick="closePopup()">Close</button>  -->
+</div>
+</div>
+<% }  %> 
+</form>
+</section>
+
+
+    
+  
+
+
+
+
+    
+<!-- Javascript -->
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+    const textContainer = document.getElementById("synopsis-text");
+    const maxChars = 500;  // Giới hạn số ký tự hiển thị ban đầu
+
+    const fullText = `Nestled by the serene shores of a beautiful beach, under the watchful gaze of the iconic Mount Fuji, lies a hidden gem—a quaint little café known only to those with a keen sense of adventure and an appetite for the extraordinary. "The Chibineko Kitchen" is not just any café; it’s a magical place where culinary wonders come to life and the air is filled with the warmth of community and the aroma of delightful dishes.
+
+Run by the enigmatic and charming chef, Haru, who has a secret of his own—he is a chibineko, a mythical creature that can transform between a cat and a human. Haru uses his unique abilities to infuse magic into every dish he prepares, bringing comfort, joy, and sometimes unexpected surprises to his patrons.
+
+The story unfolds as Haru’s café becomes a sanctuary for a diverse cast of characters each with their own stories and struggles. From the young artist trying to find her muse, to the elderly couple reminiscing their golden years, and the lonely businessman seeking solace, "The Chibineko Kitchen" is a haven where lives intersect and hearts heal over a shared meal.
+
+But Haru’s peaceful existence is threatened when a powerful entity from his past resurfaces, putting not just the café but the entire neighborhood at risk. With the help of his loyal customers and a bit of culinary magic, Haru must confront his past to save his beloved café and the community that has come to rely on it.
+`;
+
+    if (fullText.length > maxChars) {
+        const visibleText = fullText.substring(0, maxChars);
+        const hiddenText = fullText.substring(maxChars);
+
+        textContainer.innerHTML = `
+            <span id="visible-text">${visibleText}<span class="see-more" id="see-more">...See more</span></span>
+            <span id="hidden-text" class="hidden-text" style="display:none">${hiddenText}</span>
+            <span id="see-less" class="see-less" style="display:none">See less</span>
+        `;
+
+        const seeMoreSpan = document.getElementById("see-more");
+        const seeLessSpan = document.getElementById("see-less");
+
+        seeMoreSpan.addEventListener("click", function () {
+            const hiddenTextSpan = document.getElementById("hidden-text");
+
+            hiddenTextSpan.style.display = hiddenTextSpan.style.display === "none" ? "inline" : "none";
+
+            if (hiddenTextSpan.style.display === "inline") {
+                seeMoreSpan.style.display = "none";
+                seeLessSpan.style.display = "inline";
+            }
+        });
+
+        seeLessSpan.addEventListener("click", function () {
+            const hiddenTextSpan = document.getElementById("hidden-text");
+
+            hiddenTextSpan.style.display = "none";
+
+            seeMoreSpan.style.display = "inline";
+            seeLessSpan.style.display = "none";
+        });
+    } else {
+        textContainer.textContent = fullText;
+    }
+});
+
+//Table of contents script
+const chapters = [
+    "Chapter 1: A New Beginning",
+    "Chapter 2: The First Guest",
+    "Chapter 3: The Secret Ingredient",
+    "Chapter 4: The Art of Tea",
+    "Chapter 5: A Surprise Visitor",
+    "Chapter 6: Grandmother’s Wisdom",
+    "Chapter 7: A Feast for Friends",
+    "Chapter 8: The Lost Recipe",
+    "Chapter 9: Magic in the Air",
+    "Chapter 10: Trouble at the Market",
+    "Chapter 11: The Night of the Full Moon",
+    "Chapter 12: A Taste of Home",
+    "Chapter 13: The Special Request",
+    "Chapter 14: Under the Cherry Blossoms",
+    "Chapter 15: A Healing Meal",
+    "Chapter 16: The Rival Café",
+    "Chapter 17: An Unexpected Ally",
+    "Chapter 18: The Stormy Night",
+    "Chapter 19: A Festival to Remember",
+    "Chapter 20: The Mysterious Letter",
+    "Chapter 21: A Challenge Accepted",
+    "Chapter 22: The Heart of the Kitchen",
+    "Chapter 23: The Last Ingredient",
+    "Chapter 24: A Grand Celebration",
+    "Chapter 25: New Horizons"
+];
+
+let currentPage = 1;
+const chaptersPerPage = 10;
+let isReversed = false;
+
+const totalPages = Math.ceil(chapters.length / chaptersPerPage);
+
+// Cập nhật chương mới nhất với liên kết PDF
+document.querySelector('.latest-chapter').innerHTML = 
+    `<a href="chapter-25.pdf" target="_blank">${chapters[chapters.length - 1]}</a>`;
+
+// Hàm để hiển thị các chương
+function renderChapters() {
+    const startIndex = (currentPage - 1) * chaptersPerPage; // Tính toán vị trí bắt đầu của chương trên trang hiện tại
+    const displayChapters = isReversed ? [...chapters].reverse() : chapters; // Kiểm tra xem có cần đảo ngược thứ tự chương không
+    const endIndex = Math.min(startIndex + chaptersPerPage, displayChapters.length); // Tính toán vị trí kết thúc của chương trên trang hiện tại
+
+    const grid = document.getElementById('chapters-grid'); // Lấy phần tử grid chứa các chương
+    grid.innerHTML = ''; // Xóa nội dung hiện tại của grid
+
+    // Vòng lặp để thêm các chương vào grid
+    for (let i = startIndex; i < endIndex; i++) {
+        const chapterBox = document.createElement('div'); // Tạo một phần tử div mới cho mỗi chương
+        chapterBox.className = 'chapter-box'; // Thêm class cho phần tử chương
+        chapterBox.textContent = displayChapters[i]; // Gán nội dung chương cho div
+        grid.appendChild(chapterBox); // Thêm div chương vào grid
+    }
+}
+
+// Hàm để hiển thị phân trang
+function renderPagination() {
+    const pagination = document.getElementById('pagination'); // Lấy phần tử phân trang
+    pagination.innerHTML = ''; // Xóa nội dung hiện tại của phân trang
+
+    const prevArrow = `<span class="page-arrow" id="prev-page">&lt;</span>`; // Mũi tên trước
+    const nextArrow = `<span class="page-arrow" id="next-page">&gt;</span>`; // Mũi tên sau
+
+    pagination.insertAdjacentHTML('beforeend', prevArrow); // Thêm mũi tên trước vào phân trang
+
+    // Vòng lặp để thêm các số trang vào phân trang
+    for (let i = 1; i <= totalPages; i++) {
+        const activeClass = i === currentPage ? 'active' : ''; // Kiểm tra trang hiện tại để thêm class active
+        pagination.insertAdjacentHTML('beforeend', `<span class="page-number ${activeClass}">${i}</span>`); // Thêm số trang vào phân trang
+    }
+
+    pagination.insertAdjacentHTML('beforeend', nextArrow); // Thêm mũi tên sau vào phân trang
+
+    // Sự kiện khi nhấp vào mũi tên trước
+    document.querySelector('#prev-page').onclick = () => goToPage(currentPage - 1);
+    // Sự kiện khi nhấp vào mũi tên sau
+    document.querySelector('#next-page').onclick = () => goToPage(currentPage + 1);
+
+    // Sự kiện khi nhấp vào số trang
+    document.querySelectorAll('.page-number').forEach((el, index) => {
+        el.onclick = () => goToPage(index + 1);
+    });
+}
+
+// Hàm để chuyển đổi giữa "Latest" và "Newest"
+function toggleLatest() {
+    isReversed = !isReversed; // Đảo ngược giá trị của isReversed
+    const latestSort = document.querySelector('.latest-sort'); // Lấy phần tử hiển thị loại sắp xếp
+    latestSort.innerHTML = isReversed 
+        ? 'Newest <img src="../assets/images/icons/newest.png" alt="Newest Icon" class="latestlogo" />' 
+        : 'Latest <img src="../assets/images/icons/latest.png" alt="Latest Icon" class="latestlogo" />'; // Cập nhật nội dung dựa trên isReversed
+    currentPage = 1; // Đặt lại trang hiện tại về 1
+    renderChapters(); // Hiển thị các chương
+    renderPagination(); // Hiển thị phân trang
+}
+
+// Hàm để chuyển đến trang cụ thể
+function goToPage(page) {
+    if (page >= 1 && page <= totalPages) { // Kiểm tra xem trang có hợp lệ không
+        currentPage = page; // Cập nhật trang hiện tại
+        renderChapters(); // Hiển thị các chương
+        renderPagination(); // Hiển thị phân trang
+    }
+}
+
+// Sự kiện khi nhấp vào phần tử hiển thị loại sắp xếp
+document.querySelector('.latest-sort').onclick = toggleLatest;
+// Sự kiện khi nhấp vào nút cuộn lên đầu trang
+document.querySelector('.scroll-top').onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' }); // Cuộn lên đầu trang một cách mượt mà
+
+// Hiển thị các chương và phân trang ban đầu
+renderChapters();
+renderPagination();
+
+// Phần WHAT READER SAY ABOUT 
+// Lưu trữ dữ liệu đánh giá
+const ratingsData = {
+    totalRatings: 10, // Tổng số lượt đánh giá ban đầu
+    starCounts: [2, 1, 3, 1, 3] // Số lượng đánh giá từ 1★ đến 5★
+};
+
+// Biến lưu số sao đã chọn
+let selectedRating = 0;
+
+// Hiển thị hoặc ẩn popup
+const togglePopup = (show) => {
+    document.getElementById('popupOverlay').style.display = show ? 'flex' : 'none';
+};
+
+// Xử lý hover, click và reset sao
+const setupStars = () => {
+    const stars = document.querySelectorAll('.star');
+    stars.forEach(star => {
+        const value = parseInt(star.getAttribute('data-value'));
+
+        star.addEventListener('mouseover', () => highlightStars(value));
+        star.addEventListener('click', () => setRating(value));
+        star.addEventListener('mouseleave', resetStars);
+    });
+};
+
+// Highlight sao theo giá trị
+const highlightStars = (value) => {
+    document.querySelectorAll('.star').forEach(star => {
+        star.classList.toggle('active', parseInt(star.getAttribute('data-value')) <= value);
+    });
+};
+
+// Đặt sao khi click
+const setRating = (value) => {
+    selectedRating = value;
+    highlightStars(value);
+};
+
+// Reset sao khi không hover
+const resetStars = () => {
+    document.querySelectorAll('.star').forEach(star => {
+        star.classList.toggle('active', parseInt(star.getAttribute('data-value')) <= selectedRating);
+    });
+};
+
+// Submit đánh giá
+const submitRating = () => {
+    if (selectedRating > 0) {
+        const commentText = document.getElementById('commentText').value.trim();
+
+        // Cập nhật dữ liệu đánh giá
+        updateRatings(selectedRating);
+
+        // Thông báo người dùng
+        alert(`You rated ${selectedRating} stars.\nComment: ${commentText || 'No comment provided.'}`);
+        togglePopup(false);
+
+        // Reset form
+        selectedRating = 0;
+        document.getElementById('commentText').value = '';
+        resetStars();
+    } else {
+        alert('Please select a star rating.');
+    }
+};
+
+// Cập nhật dữ liệu đánh giá
+const updateRatings = (rating) => {
+    ratingsData.starCounts[rating - 1]++;
+    ratingsData.totalRatings++;
+    updateRatingBars();
+    updateAverageScore();
+};
+
+// Cập nhật giao diện thanh rating
+const updateRatingBars = () => {
+    const container = document.querySelector('.rating-bars');
+    container.innerHTML = ''; // Xóa thanh cũ
+
+    ratingsData.starCounts.forEach((count, index) => {
+        const percentage = (count / ratingsData.totalRatings) * 100;
+
+        container.insertAdjacentHTML('beforeend', `
+            <div class="rating-bar">
+                <span class="stars">${'⭐'.repeat(5 - index)}</span> <!-- Hiển thị các ngôi sao -->
+                <div class="progress">
+                    <div class="progress-fill" style="width: ${percentage.toFixed(1)}%;"></div> <!-- Hiển thị thanh tiến độ với chiều rộng tương ứng -->
+                </div>
+                <span class="percent">${percentage.toFixed(1)}%</span> <!-- Hiển thị phần trăm -->
+            </div>
+        `);
+    });
+};
+
+// Cập nhật điểm trung bình
+const updateAverageScore = () => {
+    const totalScore = ratingsData.starCounts.reduce((sum, count, index) => sum + (count * (index + 1)), 0);
+    const averageScore = (totalScore / ratingsData.totalRatings).toFixed(1);
+
+    document.querySelector('.average-score .score').textContent = averageScore;
+    document.querySelector('.average-score .reviews-count').textContent = `${ratingsData.totalRatings} reviews`;
+};
+
+// Khởi chạy khi tải trang
+document.addEventListener('DOMContentLoaded', () => {
+    setupStars();
+    updateRatingBars();
+    updateAverageScore();
+});
+
+// Gắn sự kiện cho nút
+document.querySelector('.rate-btn').addEventListener('click', () => togglePopup(true));
+document.querySelector('.btn-close').addEventListener('click', () => togglePopup(false));
+document.querySelector('.btn-submit').addEventListener('click', submitRating);
+
+// Lấy phần tử textarea và div để hiển thị số ký tự
+const commentText = document.getElementById('commentText');
+const charCount = document.getElementById('charCount');
+
+// Hàm cập nhật số ký tự đã nhập
+    const updateCharCount = () => {
+        const currentLength = commentText.value.length;
+        charCount.textContent = `${currentLength}/200`;
+};
+
+// Lắng nghe sự kiện input trên textarea
+    commentText.addEventListener('input', updateCharCount);
+
+    </script>
+
+
+
+
+  
 </body>
 </html>

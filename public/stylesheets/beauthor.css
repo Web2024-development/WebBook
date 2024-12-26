@@ -1,0 +1,161 @@
+@font-face {
+    font-family: 'CabinetGrotesk-Black';
+    src: url('CabinetGrotesk_Complete/CabinetGrotesk_Complete/Fonts/WEB/fonts/CabinetGrotesk-Black.woff2') format('woff2'),
+         url('CabinetGrotesk_Complete/CabinetGrotesk_Complete/Fonts/WEB/fonts/CabinetGrotesk-Black.woff') format('woff'),
+         url('CabinetGrotesk_Complete/CabinetGrotesk_Complete/Fonts/WEB/fonts/CabinetGrotesk-Black.ttf') format('truetype');
+         font-weight: 900;
+         font-display: swap;
+         font-style: normal;
+  }
+@font-face {
+    font-family: 'CabinetGrotesk-Extrabold';
+    src: url('CabinetGrotesk_Complete/CabinetGrotesk_Complete/Fonts/WEB/fonts/CabinetGrotesk-Extrabold.woff2') format('woff2'),
+         url('CabinetGrotesk_Complete/CabinetGrotesk_Complete/Fonts/WEB/fonts/CabinetGrotesk-Extrabold.woff') format('woff'),
+         url('CabinetGrotesk_Complete/CabinetGrotesk_Complete/Fonts/WEB/fonts/CabinetGrotesk-Extrabold.ttf') format('truetype');
+    font-weight: 800;
+    font-display: swap;
+    font-style: normal;
+}
+
+
+
+
+.container-beauthor {
+    display: flex; /* Sắp xếp các phần tử theo chiều ngang */
+    justify-content: center; /* Căn giữa các phần tử trong container */
+    align-items: center; /* Căn giữa các phần tử theo chiều dọc */
+    gap: 20px; /* Khoảng cách giữa các phần tử trong container */
+    
+    flex-wrap: nowrap; /* Đảm bảo các phần tử không xuống dòng */
+      
+}
+
+.left-content {
+    /* margin-left: ; */
+    /* Căn chỉnh các phần tử ở bên trái */
+}
+
+/* Media Queries cho màn hình nhỏ */
+@media (max-width: 768px) {
+    .container-beauthor {
+        flex-direction: column; /* Xếp các phần tử theo chiều dọc */
+        justify-content: center; /* Căn giữa theo chiều dọc */
+    }
+
+    .left-content, .extra {
+        margin: 10px auto; /* Tự động căn giữa */
+        width: 90%; /* Giảm chiều rộng để tránh tràn màn hình */
+    }
+
+    .extra img {
+        max-width: 80%; /* Thu nhỏ hình ảnh */
+    }
+}
+
+
+.left-content h1 {
+    margin-bottom: 20px; /* Khoảng cách dưới <h1> */
+  
+}
+
+.read-authors, .authors {
+    color: #0b0066; /* Màu chữ cho "Read" và "Authors" */
+}
+
+.sphera {
+    color: #5275f1; /* Màu chữ cho "Sphera" */
+}
+
+
+.left-content h2 {
+    font-size: 2vw;
+    margin-top: 20px; /* Khoảng cách trên <h2> */
+    display: block;   /* Đảm bảo h2 chiếm toàn bộ dòng */
+    line-height: 1.0; /* Giãn cách giữa các dòng */
+    white-space: nowrap; /* Ngăn chữ xuống dòng */
+}
+
+.line {
+    display: block;
+    margin-bottom: 5px; /* Điều chỉnh khoảng cách giữa các dòng */
+    font-size: inherit; /* Kế thừa cỡ chữ từ h2 */
+
+}
+
+.left-content .btn {
+    
+    padding: 5px 70px; /* Điều chỉnh khoảng cách xung quanh button */
+    font-size: 18px; /* Cỡ chữ của button */
+    background-color: #5275f1; 
+    color: white; /* Màu chữ */
+    border: none; /* Không viền */
+    border-radius: 30px; 
+    cursor: pointer; /* Con trỏ chuột khi di chuyển qua button */
+    display: inline-flex; /* Dùng inline-flex để dễ dàng sắp xếp các phần tử */
+    align-items: center; /* Căn giữa chữ và dấu */
+    white-space: nowrap; /* Chữ không xuống dòng */
+    transition: 
+        background-color 0.3s ease, 
+        box-shadow 0.3s ease, 
+        transform 0.3s ease; /* Hiệu ứng mượt mà */
+    padding-right: 176px;
+    margin-top: 30px;
+}
+
+/* Hover toàn bộ thẻ cha */
+.container-beauthor:hover .btn {
+    background-color: #415ec7;
+    box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.3);
+    transform: translateY(-4px);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease; /* Mượt mà cho màu nền, bóng, và dịch chuyển */
+
+}
+
+.container-beauthor:hover .extra img {
+    transform: scale(1.1); /* Phóng to ảnh */
+    opacity: 1.0; /* Làm mờ một chút để tạo hiệu ứng động */
+    transition: transform 0.3s ease, opacity 0.3s ease; /* Mượt mà cho phóng to và độ mờ */
+}
+
+
+
+.arrow {
+    margin-left: 15px; /* Khoảng cách giữa chữ và dấu '>' */
+    font-size: 20px; /* Cỡ chữ của dấu '>' */
+}
+
+.extra img {
+    width: 500px; /* Điều chỉnh kích thước hình ảnh */
+    height: auto;
+    margin-left: 20px; /* Khoảng cách giữa hình ảnh và các phần tử bên trái */
+    margin-top: 50px; /* Dịch hình ảnh xuống dưới */
+}
+
+/* Media Queries cho màn hình nhỏ cho left-contentcontent*/
+@media (max-width: 768px) {
+    .left-content h1 {
+        font-size: 28px; /* Giảm cỡ chữ cho h1 khi màn hình nhỏ */
+    }
+
+    .left-content h2 {
+        font-size: 18px; /* Giảm cỡ chữ cho h2 */
+    }
+
+    .left-content .btn {
+        padding: 5px 20px; /* Điều chỉnh kích thước button cho màn hình nhỏ */
+        font-size: 12px; /* Giảm cỡ chữ của button */
+    }
+
+    .arrow {
+        font-size: 22px; /* Tăngăng cỡ chữ của dấu '>' */
+    }
+
+    .extra img {
+        width: 350px; /* Giảm kích thước hình ảnh cho màn hình nhỏ */
+    }
+
+    /* Container vẫn giữ nguyên cấu trúc flex, không thay đổi hướng */
+    .container-beauthor {
+        justify-content: space-between; /* Căn đều các phần tử trong container */
+    }
+}
